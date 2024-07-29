@@ -12,23 +12,23 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef ROSIDL_DYNAMIC_TYPESUPPORT_FASTRTPS__IDENTIFIER_H_
-#define ROSIDL_DYNAMIC_TYPESUPPORT_FASTRTPS__IDENTIFIER_H_
+#ifndef ROSIDL_DYNAMIC_TYPESUPPORT_FASTDDS__IDENTIFIER_H_
+#define ROSIDL_DYNAMIC_TYPESUPPORT_FASTDDS__IDENTIFIER_H_
 
 #include "rosidl_dynamic_typesupport_fastrtps/visibility_control.h"
 
 #ifdef __cplusplus
 extern "C"
 {
-#endif
+#endif // ifdef __cplusplus
 
 
-ROSIDL_DYNAMIC_TYPESUPPORT_FASTRTPS_PUBLIC
-extern const char * const fastrtps_serialization_support_library_identifier;
+ROSIDL_DYNAMIC_TYPESUPPORT_FASTDDS_PUBLIC
+extern const char * const fastdds_serialization_support_library_identifier;
 
 
 #ifdef __cplusplus
 }
-#endif
+#endif // ifdef __cplusplus
 
-#endif  // ROSIDL_DYNAMIC_TYPESUPPORT_FASTRTPS__IDENTIFIER_H_
+#endif  // ROSIDL_DYNAMIC_TYPESUPPORT_FASTDDS__IDENTIFIER_H_
