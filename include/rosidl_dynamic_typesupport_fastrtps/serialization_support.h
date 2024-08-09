@@ -29,13 +29,13 @@ extern "C" {
 // CORE ============================================================================================
 ROSIDL_DYNAMIC_TYPESUPPORT_FASTDDS_PUBLIC
 rcutils_ret_t
-rosidl_dynamic_typesupport_fastrtps_init_serialization_support_impl(
+rosidl_dynamic_typesupport_fastdds_init_serialization_support_impl(
   rcutils_allocator_t * allocator,
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl);
 
 ROSIDL_DYNAMIC_TYPESUPPORT_FASTDDS_PUBLIC
 rcutils_ret_t
-rosidl_dynamic_typesupport_fastrtps_init_serialization_support_interface(
+rosidl_dynamic_typesupport_fastdds_init_serialization_support_interface(
   rcutils_allocator_t * allocator,
   rosidl_dynamic_typesupport_serialization_support_interface_t * serialization_support_interface);
 
