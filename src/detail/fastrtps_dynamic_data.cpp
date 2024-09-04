@@ -202,6 +202,8 @@ rcutils_ret_t fastdds__dynamic_data_get_array_index(
   rosidl_dynamic_typesupport_member_id_t * array_index)
 {
   (void)serialization_support_impl;
+  (void)index;
+  (void)array_index;
 
   auto data_handle =
     static_cast<const fastdds__rosidl_dynamic_typesupport_dynamic_data_impl *>(data_impl->handle);
@@ -1009,6 +1011,8 @@ rcutils_ret_t fastdds__dynamic_data_insert_sequence_data(
   rosidl_dynamic_typesupport_member_id_t * out_id)
 {
   (void)serialization_support_impl;
+  (void)data_impl;
+  (void)out_id;
   //TODO(richiware)
   return RCUTILS_RET_OK;
 }
