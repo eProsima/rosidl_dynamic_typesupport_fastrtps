@@ -12,13 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef ROSIDL_DYNAMIC_TYPESUPPORT_FASTRTPS__VISIBILITY_CONTROL_H_
-#define ROSIDL_DYNAMIC_TYPESUPPORT_FASTRTPS__VISIBILITY_CONTROL_H_
+#ifndef ROSIDL_DYNAMIC_TYPESUPPORT_FASTDDS__VISIBILITY_CONTROL_H_
+#define ROSIDL_DYNAMIC_TYPESUPPORT_FASTDDS__VISIBILITY_CONTROL_H_
 
 #ifdef __cplusplus
 extern "C"
 {
-#endif
+#endif // ifdef __cplusplus
 
 
 // This logic was borrowed (then namespaced) from the examples on the gcc wiki:
@@ -26,33 +26,33 @@ extern "C"
 
 #if defined _WIN32 || defined __CYGWIN__
   #ifdef __GNUC__
-    #define ROSIDL_DYNAMIC_TYPESUPPORT_FASTRTPS_EXPORT __attribute__ ((dllexport))
-    #define ROSIDL_DYNAMIC_TYPESUPPORT_FASTRTPS_IMPORT __attribute__ ((dllimport))
+    #define ROSIDL_DYNAMIC_TYPESUPPORT_FASTDDS_EXPORT __attribute__ ((dllexport))
+    #define ROSIDL_DYNAMIC_TYPESUPPORT_FASTDDS_IMPORT __attribute__ ((dllimport))
   #else
-    #define ROSIDL_DYNAMIC_TYPESUPPORT_FASTRTPS_EXPORT __declspec(dllexport)
-    #define ROSIDL_DYNAMIC_TYPESUPPORT_FASTRTPS_IMPORT __declspec(dllimport)
-  #endif
-  #ifdef ROSIDL_DYNAMIC_TYPESUPPORT_FASTRTPS_BUILDING_DLL
-    #define ROSIDL_DYNAMIC_TYPESUPPORT_FASTRTPS_PUBLIC ROSIDL_DYNAMIC_TYPESUPPORT_FASTRTPS_EXPORT
+    #define ROSIDL_DYNAMIC_TYPESUPPORT_FASTDDS_EXPORT __declspec(dllexport)
+    #define ROSIDL_DYNAMIC_TYPESUPPORT_FASTDDS_IMPORT __declspec(dllimport)
+  #endif // ifdef __GNUC__
+  #ifdef ROSIDL_DYNAMIC_TYPESUPPORT_FASTDDS_BUILDING_DLL
+    #define ROSIDL_DYNAMIC_TYPESUPPORT_FASTDDS_PUBLIC ROSIDL_DYNAMIC_TYPESUPPORT_FASTDDS_EXPORT
   #else
-    #define ROSIDL_DYNAMIC_TYPESUPPORT_FASTRTPS_PUBLIC ROSIDL_DYNAMIC_TYPESUPPORT_FASTRTPS_IMPORT
-  #endif
-  #define ROSIDL_DYNAMIC_TYPESUPPORT_FASTRTPS_LOCAL
+    #define ROSIDL_DYNAMIC_TYPESUPPORT_FASTDDS_PUBLIC ROSIDL_DYNAMIC_TYPESUPPORT_FASTDDS_IMPORT
+  #endif // ifdef ROSIDL_DYNAMIC_TYPESUPPORT_FASTDDS_BUILDING_DLL
+  #define ROSIDL_DYNAMIC_TYPESUPPORT_FASTDDS_LOCAL
 #else
-  #define ROSIDL_DYNAMIC_TYPESUPPORT_FASTRTPS_EXPORT __attribute__ ((visibility("default")))
-  #define ROSIDL_DYNAMIC_TYPESUPPORT_FASTRTPS_IMPORT
+  #define ROSIDL_DYNAMIC_TYPESUPPORT_FASTDDS_EXPORT __attribute__ ((visibility("default")))
+  #define ROSIDL_DYNAMIC_TYPESUPPORT_FASTDDS_IMPORT
   #if __GNUC__ >= 4
-    #define ROSIDL_DYNAMIC_TYPESUPPORT_FASTRTPS_PUBLIC __attribute__ ((visibility("default")))
-    #define ROSIDL_DYNAMIC_TYPESUPPORT_FASTRTPS_LOCAL  __attribute__ ((visibility("hidden")))
+    #define ROSIDL_DYNAMIC_TYPESUPPORT_FASTDDS_PUBLIC __attribute__ ((visibility("default")))
+    #define ROSIDL_DYNAMIC_TYPESUPPORT_FASTDDS_LOCAL  __attribute__ ((visibility("hidden")))
   #else
-    #define ROSIDL_DYNAMIC_TYPESUPPORT_FASTRTPS_PUBLIC
-    #define ROSIDL_DYNAMIC_TYPESUPPORT_FASTRTPS_LOCAL
-  #endif
-#endif
+    #define ROSIDL_DYNAMIC_TYPESUPPORT_FASTDDS_PUBLIC
+    #define ROSIDL_DYNAMIC_TYPESUPPORT_FASTDDS_LOCAL
+  #endif // if __GNUC__ >= 4
+#endif // if defined _WIN32 || defined __CYGWIN__
 
 
 #ifdef __cplusplus
 }
-#endif
+#endif // ifdef __cplusplus
 
-#endif  // ROSIDL_DYNAMIC_TYPESUPPORT_FASTRTPS__VISIBILITY_CONTROL_H_
+#endif  // ROSIDL_DYNAMIC_TYPESUPPORT_FASTDDS__VISIBILITY_CONTROL_H_

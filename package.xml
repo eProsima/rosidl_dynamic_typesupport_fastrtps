@@ -15,7 +15,7 @@
   <depend>rcutils</depend>
   <depend>rosidl_dynamic_typesupport</depend>
   <depend>fastcdr</depend>
-  <depend>fastrtps</depend>
+  <depend>fastdds</depend>
 
   <export>
     <build_type>ament_cmake</build_type>
