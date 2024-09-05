@@ -27,8 +27,8 @@ find_package(rcutils REQUIRED)
 find_package(rosidl_dynamic_typesupport REQUIRED)
 find_package(fastrtps_cmake_module REQUIRED)
 find_package(fastcdr REQUIRED CONFIG)
-find_package(fastrtps 2.3 REQUIRED CONFIG)
-find_package(FastRTPS 2.3 REQUIRED MODULE)
+find_package(fastdds 3 REQUIRED CONFIG)
+find_package(FastDDS 3 REQUIRED MODULE)
 
 
 # TARGETS ==========================================================================================
@@ -52,7 +52,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
 target_link_libraries(${PROJECT_NAME}
   rosidl_dynamic_typesupport::rosidl_dynamic_typesupport
   fastcdr
-  fastrtps
+  fastdds
 )
 
 
