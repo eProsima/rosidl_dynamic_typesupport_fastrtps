@@ -31,12 +31,12 @@ typedef struct fastdds__serialization_support_impl_handle_s
     eprosima::fastdds::dds::DynamicDataFactory::_ref_type data_factory_;
 } fastdds__serialization_support_impl_handle_t;
 
-ROSIDL_DYNAMIC_TYPESUPPORT_FASTDDS_PUBLIC
+ROSIDL_DYNAMIC_TYPESUPPORT_FASTRTPS_PUBLIC
 rcutils_ret_t
 fastdds__serialization_support_impl_fini(
         rosidl_dynamic_typesupport_serialization_support_impl_t* serialization_support_impl);
 
-ROSIDL_DYNAMIC_TYPESUPPORT_FASTDDS_PUBLIC
+ROSIDL_DYNAMIC_TYPESUPPORT_FASTRTPS_PUBLIC
 rcutils_ret_t
 fastdds__serialization_support_interface_fini(
         rosidl_dynamic_typesupport_serialization_support_interface_t* serialization_support_interface);
