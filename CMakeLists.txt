@@ -25,7 +25,7 @@ set(CMAKE_VERBOSE_MAKEFILE ON)
 find_package(ament_cmake_ros REQUIRED)
 find_package(rcutils REQUIRED)
 find_package(rosidl_dynamic_typesupport REQUIRED)
-find_package(fastcdr REQUIRED)
+find_package(fastcdr 2 REQUIRED)
 find_package(fastdds 3 REQUIRED)
 
 
