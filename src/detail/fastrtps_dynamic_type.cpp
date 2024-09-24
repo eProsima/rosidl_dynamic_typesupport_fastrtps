@@ -661,7 +661,8 @@ rcutils_ret_t fastdds__dynamic_type_builder_add_bounded_string_array_member(
     eprosima::fastdds::dds::traits<MemberDescriptor>::make_shared();
   descriptor->type(
     fastdds_impl->type_factory_->create_array_type(
-      fastdds_impl->type_factory_->create_string_type(string_bound)->build(),
+      fastdds_impl->type_factory_->create_string_type(
+        fastdds__size_t_to_uint32_t(string_bound))->build(),
       {fastdds__size_t_to_uint32_t(array_length)})->build());
   descriptor->name(std::string(name, name_length));
   descriptor->id(fastdds__size_t_to_uint32_t(id));
@@ -700,7 +701,8 @@ rcutils_ret_t fastdds__dynamic_type_builder_add_bounded_wstring_array_member(
     eprosima::fastdds::dds::traits<MemberDescriptor>::make_shared();
   descriptor->type(
     fastdds_impl->type_factory_->create_array_type(
-      fastdds_impl->type_factory_->create_wstring_type(wstring_bound)->build(),
+      fastdds_impl->type_factory_->create_wstring_type(
+        fastdds__size_t_to_uint32_t(wstring_bound))->build(),
       {fastdds__size_t_to_uint32_t(array_length)})->build());
   descriptor->name(std::string(name, name_length));
   descriptor->id(fastdds__size_t_to_uint32_t(id));
@@ -974,7 +976,8 @@ rcutils_ret_t fastdds__dynamic_type_builder_add_bounded_string_bounded_sequence_
     eprosima::fastdds::dds::traits<MemberDescriptor>::make_shared();
   descriptor->type(
     fastdds_impl->type_factory_->create_sequence_type(
-      fastdds_impl->type_factory_->create_string_type(string_bound)->build(),
+      fastdds_impl->type_factory_->create_string_type(
+        fastdds__size_t_to_uint32_t(string_bound))->build(),
       fastdds__size_t_to_uint32_t(sequence_bound))->build());
   descriptor->name(std::string(name, name_length));
   descriptor->id(fastdds__size_t_to_uint32_t(id));
@@ -1013,7 +1016,8 @@ rcutils_ret_t fastdds__dynamic_type_builder_add_bounded_wstring_bounded_sequence
     eprosima::fastdds::dds::traits<MemberDescriptor>::make_shared();
   descriptor->type(
     fastdds_impl->type_factory_->create_sequence_type(
-      fastdds_impl->type_factory_->create_wstring_type(wstring_bound)->build(),
+      fastdds_impl->type_factory_->create_wstring_type(
+        fastdds__size_t_to_uint32_t(wstring_bound))->build(),
       fastdds__size_t_to_uint32_t(sequence_bound))->build());
   descriptor->name(std::string(name, name_length));
   descriptor->id(fastdds__size_t_to_uint32_t(id));
