@@ -16,10 +16,13 @@
 
 #include <fastdds/dds/xtypes/dynamic_types/DynamicType.hpp>
 #include <fastdds/dds/xtypes/dynamic_types/DynamicTypeBuilder.hpp>
+#include <fastdds/dds/xtypes/dynamic_types/DynamicTypeMember.hpp>
 #include <fastdds/dds/xtypes/dynamic_types/TypeDescriptor.hpp>
 
 #include <rcutils/allocator.h>
 #include <rcutils/strdup.h>
+
+#include "rcpputils/scope_exit.hpp"
 
 #include <rosidl_runtime_c/type_description/field__functions.h>
 #include <rosidl_runtime_c/type_description/field__struct.h>
@@ -42,9 +45,9 @@
 #include "macros.hpp"
 #include "utils.hpp"
 
-// using eprosima::fastdds::types::DynamicType;  // Conflicts in this scope for some reason...
 using eprosima::fastdds::dds::DynamicType;
 using eprosima::fastdds::dds::DynamicTypeBuilder;
+using eprosima::fastdds::dds::DynamicTypeMember;
 using eprosima::fastdds::dds::MemberDescriptor;
 using eprosima::fastdds::dds::TypeDescriptor;
 
@@ -107,8 +110,14 @@ fastdds__dynamic_type_builder_init(
     new (std::nothrow) fastdds__rosidl_dynamic_typesupport_dynamic_type_builder_impl();
   if (!type_builder_handle) {
     RCUTILS_SET_ERROR_MSG("Could not init new struct type builder");
-    return RCUTILS_RET_ERROR;
+    return RCUTILS_RET_BAD_ALLOC;
   }
+
+  auto cleanup_type_builder_handle = rcpputils::make_scope_exit(
+    [type_builder_handle]()
+    {
+      delete type_builder_handle;
+    });
 
   TypeDescriptor::_ref_type struct_descriptor =
     eprosima::fastdds::dds::traits<TypeDescriptor>::make_shared();
@@ -122,6 +131,9 @@ fastdds__dynamic_type_builder_init(
   }
 
   type_builder_impl->handle = std::move(type_builder_handle);
+
+  cleanup_type_builder_handle.cancel();
+
   return RCUTILS_RET_OK;
 }
 
@@ -131,7 +143,6 @@ rcutils_ret_t fastdds__dynamic_type_builder_clone(
   rcutils_allocator_t * allocator,
   rosidl_dynamic_typesupport_dynamic_type_builder_impl_t * type_builder_impl)
 {
-  type_builder_impl->allocator = *allocator;
   auto fastdds_impl =
     static_cast<fastdds__serialization_support_impl_handle_t *>(serialization_support_impl->handle);
 
@@ -139,8 +150,14 @@ rcutils_ret_t fastdds__dynamic_type_builder_clone(
     new (std::nothrow) fastdds__rosidl_dynamic_typesupport_dynamic_type_builder_impl();
   if (!type_builder_handle) {
     RCUTILS_SET_ERROR_MSG("Could not init new struct type builder");
-    return RCUTILS_RET_ERROR;
+    return RCUTILS_RET_BAD_ALLOC;
   }
+
+  auto cleanup_type_builder_handle = rcpputils::make_scope_exit(
+    [type_builder_handle]()
+    {
+      delete type_builder_handle;
+    });
   auto other_type_builder_handle =
     static_cast<const fastdds__rosidl_dynamic_typesupport_dynamic_type_builder_impl *>(other->handle);
   if (!other_type_builder_handle || !other_type_builder_handle->ref_type) {
@@ -155,6 +172,9 @@ rcutils_ret_t fastdds__dynamic_type_builder_clone(
   }
 
   type_builder_impl->handle = std::move(type_builder_handle);
+  type_builder_impl->allocator = *allocator;
+
+  cleanup_type_builder_handle.cancel();
   return RCUTILS_RET_OK;
 }
 
@@ -172,7 +192,7 @@ fastdds__dynamic_type_builder_fini(
     return RCUTILS_RET_ERROR;
   }
   type_builder_handle->ref_type.reset();
-  //TODO(richiware) delete?
+  delete type_builder_handle;
   return RCUTILS_RET_OK;
 }
 
@@ -183,7 +203,6 @@ rcutils_ret_t fastdds__dynamic_type_init_from_dynamic_type_builder(
   rosidl_dynamic_typesupport_dynamic_type_impl_t * type_impl)
 {
   (void)serialization_support_impl;
-  (void)allocator;
 
   auto type_builder_handle =
     static_cast<const fastdds__rosidl_dynamic_typesupport_dynamic_type_builder_impl *>(
@@ -196,8 +215,14 @@ rcutils_ret_t fastdds__dynamic_type_init_from_dynamic_type_builder(
   auto type_handle = new (std::nothrow) fastdds__rosidl_dynamic_typesupport_dynamic_type_impl();
   if (!type_handle) {
     RCUTILS_SET_ERROR_MSG("Could not init new struct type");
-    return RCUTILS_RET_ERROR;
+    return RCUTILS_RET_BAD_ALLOC;
   }
+
+  auto cleanup_type_handle = rcpputils::make_scope_exit(
+    [type_handle]()
+    {
+      delete type_handle;
+    });
 
   type_handle->ref_type = type_builder_handle->ref_type->build();
   if (!type_handle->ref_type) {
@@ -206,6 +231,7 @@ rcutils_ret_t fastdds__dynamic_type_init_from_dynamic_type_builder(
   }
 
   type_impl->handle = type_handle;
+  type_impl->allocator = *allocator;
   return RCUTILS_RET_OK;
 }
 
@@ -230,12 +256,21 @@ fastdds__dynamic_type_clone(
     new (std::nothrow) fastdds__rosidl_dynamic_typesupport_dynamic_type_impl();
   if (!type_impl_out_handle) {
     RCUTILS_SET_ERROR_MSG("Could not init new struct type");
-    return RCUTILS_RET_ERROR;
+    return RCUTILS_RET_BAD_ALLOC;
   }
+
+  auto cleanup_type_impl_out_handle = rcpputils::make_scope_exit(
+    [type_impl_out_handle]()
+    {
+      delete type_impl_out_handle;
+    });
 
   type_impl_out_handle->ref_type = type_impl_handle->ref_type;
 
   type_impl->handle = type_impl_out_handle;
+
+  cleanup_type_impl_out_handle.cancel();
+
   return RCUTILS_RET_OK;
 }
 
@@ -257,7 +292,7 @@ fastdds__dynamic_type_fini(
   FASTDDS_CHECK_RET_FOR_NOT_OK_WITH_MSG(
     fastdds_impl->type_factory_->delete_type(type_handle->ref_type),
     "Could not fini type");
-  //TODO(richiware) delete structure?
+  delete type_handle;
   return RCUTILS_RET_OK;
 }
 
@@ -316,12 +351,60 @@ rcutils_ret_t fastdds__dynamic_type_builder_set_name(
   const char * name,
   size_t name_length)
 {
-  (void)serialization_support_impl;
-  (void)type_builder_impl;
-  (void)name;
-  (void)name_length;
+  auto fastdds_impl =
+    static_cast<fastdds__serialization_support_impl_handle_t *>(serialization_support_impl->handle);
+
+  auto type_builder_handle =
+    static_cast<fastdds__rosidl_dynamic_typesupport_dynamic_type_builder_impl *>(
+    type_builder_impl->handle);
+
+  if (!type_builder_handle || !type_builder_handle->ref_type) {
+    RCUTILS_SET_ERROR_MSG("Could not get handle to type builder impl");
+    return RCUTILS_RET_INVALID_ARGUMENT;
+  }
+
+  TypeDescriptor::_ref_type descriptor =
+    eprosima::fastdds::dds::traits<TypeDescriptor>::make_shared();
+
+  type_builder_handle->ref_type->get_descriptor(descriptor);
+  std::string name_string = fastdds__replace_string(std::string(name, name_length), "/", "::");
+  descriptor->name(name_string);
+
+  auto new_type_builder = fastdds_impl->type_factory_->create_type(descriptor);
+  if (!new_type_builder) {
+    RCUTILS_SET_ERROR_MSG("Could not create new type builder");
+    return RCUTILS_RET_BAD_ALLOC;
+  }
+
+  for (uint32_t index {0}; index < type_builder_handle->ref_type->get_member_count(); ++index) {
+    DynamicTypeMember::_ref_type member;
+    if (eprosima::fastdds::dds::RETCODE_OK !=
+      type_builder_handle->ref_type->get_member_by_index(member, index))
+    {
+      RCUTILS_SET_ERROR_MSG("Could not get type builder member");
+      return RCUTILS_RET_ERROR;
+    }
+
+    MemberDescriptor::_ref_type member_descriptor =
+      eprosima::fastdds::dds::traits<MemberDescriptor>::make_shared();
+    if (eprosima::fastdds::dds::RETCODE_OK !=
+      member->get_descriptor(member_descriptor))
+    {
+      RCUTILS_SET_ERROR_MSG("Could not get type builder member descriptor");
+      return RCUTILS_RET_ERROR;
+    }
+
+    if (eprosima::fastdds::dds::RETCODE_OK !=
+      new_type_builder->add_member(member_descriptor))
+    {
+      RCUTILS_SET_ERROR_MSG("Could not create new type builder member");
+      return RCUTILS_RET_ERROR;
+    }
+  }
+
+  type_builder_handle->ref_type = new_type_builder;
+
   return RCUTILS_RET_OK;
-  // TODO(richiware)
 }
 
 // DYNAMIC TYPE PRIMITIVE MEMBERS ==================================================================
@@ -669,8 +752,7 @@ rcutils_ret_t fastdds__dynamic_type_builder_add_bounded_string_array_member(
   descriptor->default_value(std::string(default_value, default_value_length));
 
   FASTDDS_CHECK_RET_FOR_NOT_OK_AND_RETURN_WITH_MSG(
-    static_cast<DynamicTypeBuilder *>(type_builder_impl->handle)
-    ->add_member(descriptor),
+    type_builder_handle->ref_type->add_member(descriptor),
     "Could not add bounded `string` array member to type builder");
 }
 
@@ -709,8 +791,7 @@ rcutils_ret_t fastdds__dynamic_type_builder_add_bounded_wstring_array_member(
   descriptor->default_value(std::string(default_value, default_value_length));
 
   FASTDDS_CHECK_RET_FOR_NOT_OK_AND_RETURN_WITH_MSG(
-    static_cast<DynamicTypeBuilder *>(type_builder_impl->handle)
-    ->add_member(descriptor),
+    type_builder_handle->ref_type->add_member(descriptor),
     "Could not add bounded `wstring` array member to type builder");
 }
 
@@ -848,8 +929,7 @@ rcutils_ret_t fastdds__dynamic_type_builder_add_bounded_wstring_unbounded_sequen
     descriptor->default_value(std::string(default_value, default_value_length)); \
  \
     FASTDDS_CHECK_RET_FOR_NOT_OK_AND_RETURN_WITH_MSG( \
-      static_cast<DynamicTypeBuilder *>(type_builder_impl->handle) \
-      ->add_member(descriptor), \
+      type_builder_handle->ref_type->add_member(descriptor), \
       "Could not add `" #MemberT "` bounded sequence member to type builder"); \
   }
 
@@ -984,8 +1064,7 @@ rcutils_ret_t fastdds__dynamic_type_builder_add_bounded_string_bounded_sequence_
   descriptor->default_value(std::string(default_value, default_value_length));
 
   FASTDDS_CHECK_RET_FOR_NOT_OK_AND_RETURN_WITH_MSG(
-    static_cast<DynamicTypeBuilder *>(type_builder_impl->handle)
-    ->add_member(descriptor),
+    type_builder_handle->ref_type->add_member(descriptor),
     "Could not add bounded `string` bounded sequence member to type builder");
 }
 
@@ -1024,8 +1103,7 @@ rcutils_ret_t fastdds__dynamic_type_builder_add_bounded_wstring_bounded_sequence
   descriptor->default_value(std::string(default_value, default_value_length));
 
   FASTDDS_CHECK_RET_FOR_NOT_OK_AND_RETURN_WITH_MSG(
-    static_cast<DynamicTypeBuilder *>(type_builder_impl->handle)
-    ->add_member(descriptor),
+    type_builder_handle->ref_type->add_member(descriptor),
     "Could not add bounded `wstring` bounded sequence member to type builder");
 }
 
@@ -1068,8 +1146,7 @@ rcutils_ret_t fastdds__dynamic_type_builder_add_complex_member(
   descriptor->default_value(std::string(default_value, default_value_length));
 
   FASTDDS_CHECK_RET_FOR_NOT_OK_AND_RETURN_WITH_MSG(
-    static_cast<DynamicTypeBuilder *>(type_builder_impl->handle)
-    ->add_member(descriptor),
+    type_builder_handle->ref_type->add_member(descriptor),
     "Could not add complex member to type builder");
 }
 
@@ -1116,8 +1193,7 @@ rcutils_ret_t fastdds__dynamic_type_builder_add_complex_array_member(
   descriptor->default_value(std::string(default_value, default_value_length));
 
   FASTDDS_CHECK_RET_FOR_NOT_OK_AND_RETURN_WITH_MSG(
-    static_cast<DynamicTypeBuilder *>(type_builder_impl->handle)
-    ->add_member(descriptor),
+    type_builder_handle->ref_type->add_member(descriptor),
     "Could not add complex array member to type builder");
 }
 
@@ -1180,8 +1256,7 @@ rcutils_ret_t fastdds__dynamic_type_builder_add_complex_bounded_sequence_member(
   descriptor->default_value(std::string(default_value, default_value_length));
 
   FASTDDS_CHECK_RET_FOR_NOT_OK_AND_RETURN_WITH_MSG(
-    static_cast<DynamicTypeBuilder *>(type_builder_impl->handle)
-    ->add_member(descriptor),
+    type_builder_handle->ref_type->add_member(descriptor),
     "Could not add complex bounded sequence member to type builder");
 }
 
@@ -1223,8 +1298,7 @@ rcutils_ret_t fastdds__dynamic_type_builder_add_complex_member_builder(
   descriptor->default_value(std::string(default_value, default_value_length));
 
   FASTDDS_CHECK_RET_FOR_NOT_OK_AND_RETURN_WITH_MSG(
-    static_cast<DynamicTypeBuilder *>(type_builder_impl->handle)
-    ->add_member(descriptor),
+    type_builder_handle->ref_type->add_member(descriptor),
     "Could not add complex member to type builder (via builder)");
 }
 
@@ -1271,8 +1345,7 @@ rcutils_ret_t fastdds__dynamic_type_builder_add_complex_array_member_builder(
   descriptor->default_value(std::string(default_value, default_value_length));
 
   FASTDDS_CHECK_RET_FOR_NOT_OK_AND_RETURN_WITH_MSG(
-    static_cast<DynamicTypeBuilder *>(type_builder_impl->handle)
-    ->add_member(descriptor),
+    type_builder_handle->ref_type->add_member(descriptor),
     "Could not add complex array member to type builder (via builder)");
 }
 
@@ -1335,7 +1408,6 @@ rcutils_ret_t fastdds__dynamic_type_builder_add_complex_bounded_sequence_member_
   descriptor->default_value(std::string(default_value, default_value_length));
 
   FASTDDS_CHECK_RET_FOR_NOT_OK_AND_RETURN_WITH_MSG(
-    static_cast<DynamicTypeBuilder *>(type_builder_impl->handle)
-    ->add_member(descriptor),
+    type_builder_handle->ref_type->add_member(descriptor),
     "Could not add complex bounded sequence member to type builder");
 }

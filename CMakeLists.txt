@@ -23,6 +23,7 @@ set(CMAKE_VERBOSE_MAKEFILE ON)
 
 # DEPS =============================================================================================
 find_package(ament_cmake_ros REQUIRED)
+find_package(rcpputils REQUIRED)
 find_package(rcutils REQUIRED)
 find_package(rosidl_dynamic_typesupport REQUIRED)
 find_package(fastcdr REQUIRED)
@@ -48,6 +49,8 @@ target_include_directories(${PROJECT_NAME} PUBLIC
   "$<INSTALL_INTERFACE:include/${PROJECT_NAME}>"
 )
 target_link_libraries(${PROJECT_NAME}
+  rcpputils::rcpputils
+  rcutils::rcutils
   rosidl_dynamic_typesupport::rosidl_dynamic_typesupport
   fastcdr
   fastdds
@@ -66,6 +69,7 @@ install(DIRECTORY include/
 )
 
 ament_export_targets(${PROJECT_NAME}-export HAS_LIBRARY_TARGET)
+ament_export_dependencies(rcpputils)
 ament_export_dependencies(rcutils)
 ament_export_dependencies(rosidl_dynamic_typesupport)
 

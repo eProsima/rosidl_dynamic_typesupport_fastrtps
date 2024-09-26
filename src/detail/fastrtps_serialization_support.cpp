@@ -22,30 +22,30 @@
 
 rcutils_ret_t
 fastdds__serialization_support_impl_fini(
-        rosidl_dynamic_typesupport_serialization_support_impl_t* serialization_support_impl)
+  rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl)
 {
-    rcutils_allocator_t allocator = serialization_support_impl->allocator;
+  rcutils_allocator_t allocator = serialization_support_impl->allocator;
 
-    auto fastdds_serialization_support_handle =
-            static_cast<fastdds__serialization_support_impl_handle_t*>(
-        serialization_support_impl->handle);
+  auto fastdds_serialization_support_handle =
+    static_cast<fastdds__serialization_support_impl_handle_t *>(
+    serialization_support_impl->handle);
 
-    FASTDDS_CHECK_RET_FOR_NOT_OK_WITH_MSG(
-        fastdds_serialization_support_handle->type_factory_->delete_instance(),
-        "Could not delete dynamic type factory when finalizing serialization support");
+  FASTDDS_CHECK_RET_FOR_NOT_OK_WITH_MSG(
+    fastdds_serialization_support_handle->type_factory_->delete_instance(),
+    "Could not delete dynamic type factory when finalizing serialization support");
 
-    FASTDDS_CHECK_RET_FOR_NOT_OK_WITH_MSG(
-        fastdds_serialization_support_handle->data_factory_->delete_instance(),
-        "Could not delete dynamic data factory when finalizing serialization support");
+  FASTDDS_CHECK_RET_FOR_NOT_OK_WITH_MSG(
+    fastdds_serialization_support_handle->data_factory_->delete_instance(),
+    "Could not delete dynamic data factory when finalizing serialization support");
 
-    allocator.deallocate(serialization_support_impl->handle, allocator.state);
-    return RCUTILS_RET_OK;
+  allocator.deallocate(serialization_support_impl->handle, allocator.state);
+  return RCUTILS_RET_OK;
 }
 
 rcutils_ret_t
 fastdds__serialization_support_interface_fini(
-        rosidl_dynamic_typesupport_serialization_support_interface_t* serialization_support_interface)
+  rosidl_dynamic_typesupport_serialization_support_interface_t * serialization_support_interface)
 {
-    static_cast<void>(serialization_support_interface);
-    return RCUTILS_RET_OK;
+  static_cast<void>(serialization_support_interface);
+  return RCUTILS_RET_OK;
 }

@@ -29,6 +29,8 @@
 #include <rcutils/types/uint8_array.h>
 #include <rosidl_dynamic_typesupport/api/serialization_support_interface.h>
 
+#include "rcpputils/scope_exit.hpp"
+
 #include <algorithm>
 #include <codecvt>
 #include <cstring>
@@ -212,8 +214,10 @@ rcutils_ret_t fastdds__dynamic_data_get_array_index(
     return RCUTILS_RET_INVALID_ARGUMENT;
   }
 
-  //TODO(richiware)
-  return RCUTILS_RET_OK;
+  *array_index = data_handle->ref_type->get_member_id_at_index(fastdds__size_t_to_uint32_t(index));
+
+  return eprosima::fastdds::dds::MEMBER_ID_INVALID !=
+         *array_index ? RCUTILS_RET_OK : RCUTILS_RET_ERROR;
 }
 
 rcutils_ret_t
@@ -239,18 +243,25 @@ fastdds__dynamic_data_loan_value(
 
   if (!loaned_data_impl_handle) {
     RCUTILS_SET_ERROR_MSG("Could not init new data");
-    return RCUTILS_RET_ERROR;
+    return RCUTILS_RET_BAD_ALLOC;
   }
+
+  auto cleanup_loaned_data_impl_handle = rcpputils::make_scope_exit(
+    [loaned_data_impl_handle]() {
+      delete loaned_data_impl_handle;
+    });
 
   loaned_data_impl_handle->ref_type =
     data_handle->ref_type->loan_value(fastdds__size_t_to_uint32_t(id));
   if (!loaned_data_impl_handle->ref_type) {
     RCUTILS_SET_ERROR_MSG("Could not loan dynamic data");
-    delete loaned_data_impl_handle;
     return RCUTILS_RET_ERROR;
   }
 
   loaned_data_impl->handle = std::move(loaned_data_impl_handle);
+
+  cleanup_loaned_data_impl_handle.cancel();
+
   return RCUTILS_RET_OK;
 }
 
@@ -279,7 +290,6 @@ rcutils_ret_t fastdds__dynamic_data_return_loaned_value(
   FASTDDS_CHECK_RET_FOR_NOT_OK_WITH_MSG(
     data_handle->ref_type->return_loaned_value(inner_data_handle->ref_type),
     "Could not return loaned value");
-  //TODO(richiware) remove structure?
   return RCUTILS_RET_OK;
 }
 
@@ -301,6 +311,10 @@ fastdds__dynamic_data_get_name(
 
   std::string tmp_name = data_handle->ref_type->type()->get_name().to_string();
   *name = rcutils_strdup(tmp_name.c_str(), rcutils_get_default_allocator());
+  if (nullptr == *name) {
+    RCUTILS_SET_ERROR_MSG("Failed to duplicate name for data name");
+    return RCUTILS_RET_BAD_ALLOC;
+  }
   *name_length = tmp_name.size();
   return RCUTILS_RET_OK;
 }
@@ -325,6 +339,17 @@ rcutils_ret_t fastdds__dynamic_data_init_from_dynamic_type_builder(
   auto data_impl_handle =
     new (std::nothrow) fastdds__rosidl_dynamic_typesupport_dynamic_data_impl();
 
+  if (nullptr == data_impl_handle) {
+    RCUTILS_SET_ERROR_MSG("Could not init new data");
+    return RCUTILS_RET_BAD_ALLOC;
+  }
+
+  auto cleanup_data_impl_handle = rcpputils::make_scope_exit(
+    [data_impl_handle]()
+    {
+      delete data_impl_handle;
+    });
+
   data_impl_handle->ref_type =
     static_cast<fastdds__serialization_support_impl_handle_t *>(serialization_support_impl->handle)
     ->data_factory_->create_data(type_builder_handle->ref_type->build());
@@ -335,6 +360,9 @@ rcutils_ret_t fastdds__dynamic_data_init_from_dynamic_type_builder(
   }
 
   data_impl->handle = data_impl_handle;
+
+  cleanup_data_impl_handle.cancel();
+
   return RCUTILS_RET_OK;
 }
 
@@ -357,6 +385,17 @@ rcutils_ret_t fastdds__dynamic_data_init_from_dynamic_type(
   auto data_impl_handle =
     new (std::nothrow) fastdds__rosidl_dynamic_typesupport_dynamic_data_impl();
 
+  if (nullptr == data_impl_handle) {
+    RCUTILS_SET_ERROR_MSG("Could not init new data");
+    return RCUTILS_RET_BAD_ALLOC;
+  }
+
+  auto cleanup_data_impl_handle = rcpputils::make_scope_exit(
+    [data_impl_handle]()
+    {
+      delete data_impl_handle;
+    });
+
   // NOTE(methylDragon): All this casting is unfortunately necessary...
   //
   //                     create_data only takes DynamicType_ptr (aka shared_ptr)
@@ -372,6 +411,9 @@ rcutils_ret_t fastdds__dynamic_data_init_from_dynamic_type(
   }
 
   data_impl->handle = data_impl_handle;
+
+  cleanup_data_impl_handle.cancel();
+
   return RCUTILS_RET_OK;
 }
 
@@ -396,6 +438,17 @@ fastdds__dynamic_data_clone(
   auto data_impl_handle =
     new (std::nothrow) fastdds__rosidl_dynamic_typesupport_dynamic_data_impl();
 
+  if (nullptr == data_impl_handle) {
+    RCUTILS_SET_ERROR_MSG("Could not init new data");
+    return RCUTILS_RET_BAD_ALLOC;
+  }
+
+  auto cleanup_data_impl_handle = rcpputils::make_scope_exit(
+    [data_impl_handle]()
+    {
+      delete data_impl_handle;
+    });
+
   data_impl_handle->ref_type = other_data_handle->ref_type->clone();
   if (!data_impl_handle) {
     RCUTILS_SET_ERROR_MSG("Could not clone struct type builder");
@@ -404,6 +457,9 @@ fastdds__dynamic_data_clone(
   }
 
   data_impl->handle = data_impl_handle;
+
+  cleanup_data_impl_handle.cancel();
+
   return RCUTILS_RET_OK;
 }
 
@@ -423,7 +479,7 @@ fastdds__dynamic_data_fini(
     static_cast<fastdds__serialization_support_impl_handle_t *>(serialization_support_impl->handle)
     ->data_factory_->delete_data(data_handle->ref_type),
     "Could not fini data");
-  //TODO(richiware) delete structure?
+  delete data_handle;
   return RCUTILS_RET_OK;
 }
 
@@ -1009,10 +1065,42 @@ rcutils_ret_t fastdds__dynamic_data_insert_sequence_data(
   rosidl_dynamic_typesupport_member_id_t * out_id)
 {
   (void)serialization_support_impl;
-  (void)data_impl;
-  (void)out_id;
-  //TODO(richiware)
-  return RCUTILS_RET_OK;
+
+  auto data_handle =
+    static_cast<fastdds__rosidl_dynamic_typesupport_dynamic_data_impl *>(data_impl->handle);
+  if (!data_handle || !data_handle->ref_type) {
+    RCUTILS_SET_ERROR_MSG("Could not get handle to data impl");
+    return RCUTILS_RET_INVALID_ARGUMENT;
+  }
+
+  auto sequence_length = data_handle->ref_type->get_item_count();
+  eprosima::fastdds::dds::ReturnCode_t ret_code {eprosima::fastdds::dds::RETCODE_ERROR};
+
+  switch (data_handle->ref_type->type()->get_kind()) {
+    case eprosima::fastdds::dds::TK_ANNOTATION:
+    case eprosima::fastdds::dds::TK_ARRAY:
+    case eprosima::fastdds::dds::TK_BITMASK:
+    case eprosima::fastdds::dds::TK_BITSET:
+    case eprosima::fastdds::dds::TK_MAP:
+    case eprosima::fastdds::dds::TK_SEQUENCE:
+    case eprosima::fastdds::dds::TK_STRUCTURE:
+    case eprosima::fastdds::dds::TK_UNION:
+      {
+        auto new_data = data_handle->ref_type->loan_value(sequence_length);
+        if (nullptr != new_data) {
+          ret_code = data_handle->ref_type->return_loaned_value(new_data);
+        }
+      }
+
+      break;
+    default:
+      ret_code = data_handle->ref_type->set_byte_value(sequence_length, 0);
+      break;
+  }
+
+  *out_id = sequence_length;
+
+  return eprosima::fastdds::dds::RETCODE_OK == ret_code ? RCUTILS_RET_OK : RCUTILS_RET_ERROR;
 }
 
 #define FASTDDS_DYNAMIC_DATA_INSERT_VALUE_FN(FunctionT, ValueT, DataFnT) \
