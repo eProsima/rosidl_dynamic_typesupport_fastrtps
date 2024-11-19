@@ -355,7 +355,6 @@ rcutils_ret_t fastdds__dynamic_data_init_from_dynamic_type_builder(
     ->data_factory_->create_data(type_builder_handle->ref_type->build());
   if (!data_impl_handle->ref_type) {
     RCUTILS_SET_ERROR_MSG("Could not init dynamic data from dynamic type builder");
-    delete data_impl_handle;
     return RCUTILS_RET_BAD_ALLOC;
   }
 
@@ -406,7 +405,6 @@ rcutils_ret_t fastdds__dynamic_data_init_from_dynamic_type(
     ->data_factory_->create_data(type_handle->ref_type);
   if (!data_impl_handle->ref_type) {
     RCUTILS_SET_ERROR_MSG("Could not init dynamic data from dynamic type");
-    delete data_impl_handle;
     return RCUTILS_RET_BAD_ALLOC;
   }
 
@@ -452,7 +450,6 @@ fastdds__dynamic_data_clone(
   data_impl_handle->ref_type = other_data_handle->ref_type->clone();
   if (!data_impl_handle) {
     RCUTILS_SET_ERROR_MSG("Could not clone struct type builder");
-    delete data_impl_handle;
     return RCUTILS_RET_ERROR;
   }
 
@@ -521,7 +518,7 @@ fastdds__dynamic_data_serialize(
       data_length));
   bool success = m_type->serialize(
     &data_handle->ref_type, *payload,
-    eprosima::fastdds::dds::DataRepresentationId_t::XCDR_DATA_REPRESENTATION);                                                                    // Serialize into payload
+    eprosima::fastdds::dds::DataRepresentationId_t::XCDR_DATA_REPRESENTATION);  // Serialize into payload
 
   if (success) {
     buffer->buffer_length = payload->length;
