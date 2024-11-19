@@ -24,8 +24,7 @@
 
 
 uint32_t
-fastdds__size_t_to_uint32_t(
-  size_t in)
+fastdds__size_t_to_uint32_t(size_t in)
 {
   if (in > std::numeric_limits<uint32_t>::max()) {
     std::cerr << "Passed size_t will overflow when narrowed to uint32_t!" << std::endl;
@@ -35,10 +34,7 @@ fastdds__size_t_to_uint32_t(
 }
 
 char16_t *
-fastdds__ucsncpy(
-  char16_t * dest,
-  const char16_t * src,
-  size_t n)
+fastdds__ucsncpy(char16_t * dest, const char16_t * src, size_t n)
 {
   if (src == NULL || dest == NULL) {
     return NULL;
@@ -54,8 +50,7 @@ fastdds__ucsncpy(
 }
 
 std::wstring
-fastdds__u16string_to_wstring(
-  const std::u16string & u16str)
+fastdds__u16string_to_wstring(const std::u16string & u16str)
 {
   std::wstring wstr;
   wstr.resize(u16str.size());
@@ -66,8 +61,7 @@ fastdds__u16string_to_wstring(
 }
 
 std::u16string
-fastdds__wstring_to_u16string(
-  const std::wstring & wstr)
+fastdds__wstring_to_u16string(const std::wstring & wstr)
 {
   std::u16string u16str;
   u16str.resize(wstr.size());
@@ -78,10 +72,7 @@ fastdds__wstring_to_u16string(
 }
 
 std::string
-fastdds__replace_string(
-  std::string str,
-  const std::string & from,
-  const std::string & to)
+fastdds__replace_string(std::string str, const std::string & from, const std::string & to)
 {
   size_t pos = 0;
   while ((pos = str.find(from, pos)) != std::string::npos) {
@@ -92,8 +83,7 @@ fastdds__replace_string(
 }
 
 rcutils_ret_t
-fastdds__convert_fastdds_ret_to_rcl_ret(
-  eprosima::fastdds::dds::ReturnCode_t fastdds_ret)
+fastdds__convert_fastdds_ret_to_rcl_ret(eprosima::fastdds::dds::ReturnCode_t fastdds_ret)
 {
   switch (fastdds_ret) {
     case eprosima::fastdds::dds::RETCODE_OK:

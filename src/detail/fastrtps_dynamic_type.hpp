@@ -45,14 +45,14 @@ fastdds__dynamic_type_equals(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   const rosidl_dynamic_typesupport_dynamic_type_impl_t * type_impl,
   const rosidl_dynamic_typesupport_dynamic_type_impl_t * other_type_impl,
-  bool * equals);      // OUT
+  bool * equals);  // OUT
 
 ROSIDL_DYNAMIC_TYPESUPPORT_FASTRTPS_PUBLIC
 rcutils_ret_t
 fastdds__dynamic_type_get_member_count(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   const rosidl_dynamic_typesupport_dynamic_type_impl_t * type_impl,
-  size_t * member_count);      // OUT
+  size_t * member_count);  // OUT
 
 
 // DYNAMIC TYPE CONSTRUCTION =======================================================================
@@ -63,7 +63,7 @@ fastdds__dynamic_type_builder_init(
   const char * name,
   size_t name_length,
   rcutils_allocator_t * allocator,
-  rosidl_dynamic_typesupport_dynamic_type_builder_impl_t * type_builder_impl);      // OUT
+  rosidl_dynamic_typesupport_dynamic_type_builder_impl_t * type_builder_impl);  // OUT
 
 ROSIDL_DYNAMIC_TYPESUPPORT_FASTRTPS_PUBLIC
 rcutils_ret_t
@@ -71,7 +71,7 @@ fastdds__dynamic_type_builder_clone(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   const rosidl_dynamic_typesupport_dynamic_type_builder_impl_t * other,
   rcutils_allocator_t * allocator,
-  rosidl_dynamic_typesupport_dynamic_type_builder_impl_t * type_builder_impl);      // OUT
+  rosidl_dynamic_typesupport_dynamic_type_builder_impl_t * type_builder_impl);  // OUT
 
 ROSIDL_DYNAMIC_TYPESUPPORT_FASTRTPS_PUBLIC
 rcutils_ret_t
@@ -85,7 +85,7 @@ fastdds__dynamic_type_init_from_dynamic_type_builder(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_type_builder_impl_t * type_builder_impl,
   rcutils_allocator_t * allocator,
-  rosidl_dynamic_typesupport_dynamic_type_impl_t * type_impl);      // OUT
+  rosidl_dynamic_typesupport_dynamic_type_impl_t * type_impl);  // OUT
 
 ROSIDL_DYNAMIC_TYPESUPPORT_FASTRTPS_PUBLIC
 rcutils_ret_t
@@ -93,7 +93,7 @@ fastdds__dynamic_type_clone(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   const rosidl_dynamic_typesupport_dynamic_type_impl_t * other,
   rcutils_allocator_t * allocator,
-  rosidl_dynamic_typesupport_dynamic_type_impl_t * type_impl);      // OUT
+  rosidl_dynamic_typesupport_dynamic_type_impl_t * type_impl);  // OUT
 
 ROSIDL_DYNAMIC_TYPESUPPORT_FASTRTPS_PUBLIC
 rcutils_ret_t
@@ -106,16 +106,16 @@ rcutils_ret_t
 fastdds__dynamic_type_get_name(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   const rosidl_dynamic_typesupport_dynamic_type_impl_t * type_impl,
-  const char ** name,      // OUT
-  size_t * name_length);      // OUT
+  const char ** name,  // OUT
+  size_t * name_length);  // OUT
 
 ROSIDL_DYNAMIC_TYPESUPPORT_FASTRTPS_PUBLIC
 rcutils_ret_t
 fastdds__dynamic_type_builder_get_name(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   const rosidl_dynamic_typesupport_dynamic_type_builder_impl_t * type_builder_impl,
-  const char ** name,      // OUT
-  size_t * name_length);      // OUT
+  const char ** name,  // OUT
+  size_t * name_length);  // OUT
 
 ROSIDL_DYNAMIC_TYPESUPPORT_FASTRTPS_PUBLIC
 rcutils_ret_t

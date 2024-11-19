@@ -34,7 +34,8 @@
 // =================================================================================================
 // SERIALIZATION SUPPORT IMPL
 // =================================================================================================
-rcutils_ret_t rosidl_dynamic_typesupport_fastdds_init_serialization_support_impl(
+rcutils_ret_t
+rosidl_dynamic_typesupport_fastdds_init_serialization_support_impl(
   rcutils_allocator_t * allocator,
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl)
 {
@@ -46,8 +47,7 @@ rcutils_ret_t rosidl_dynamic_typesupport_fastdds_init_serialization_support_impl
   RCUTILS_CHECK_ARGUMENT_FOR_NULL(serialization_support_impl, RCUTILS_RET_INVALID_ARGUMENT);
 
   auto serialization_support_impl_handle =
-    static_cast<fastdds__serialization_support_impl_handle_t *>(
-    allocator->zero_allocate(
+    static_cast<fastdds__serialization_support_impl_handle_t *>(allocator->zero_allocate(
       1, sizeof(fastdds__serialization_support_impl_handle_t),
       allocator->state));
   if (!serialization_support_impl_handle) {
@@ -72,7 +72,8 @@ rcutils_ret_t rosidl_dynamic_typesupport_fastdds_init_serialization_support_impl
 // =================================================================================================
 // SERIALIZATION SUPPORT INTERFACE
 // =================================================================================================
-rcutils_ret_t rosidl_dynamic_typesupport_fastdds_init_serialization_support_interface(
+rcutils_ret_t
+rosidl_dynamic_typesupport_fastdds_init_serialization_support_interface(
   rcutils_allocator_t * allocator,
   rosidl_dynamic_typesupport_serialization_support_interface_t * serialization_support_interface)
 {
@@ -91,36 +92,46 @@ rcutils_ret_t rosidl_dynamic_typesupport_fastdds_init_serialization_support_inte
   serialization_support_interface->serialization_support_interface_fini =
     fastdds__serialization_support_interface_fini;
 
+
   // ===============================================================================================
   // DYNAMIC TYPE METHODS
   // ===============================================================================================
   // DYNAMIC TYPE UTILS
-  serialization_support_interface->dynamic_type_equals = fastdds__dynamic_type_equals;
+  serialization_support_interface->dynamic_type_equals =
+    fastdds__dynamic_type_equals;
 
   serialization_support_interface->dynamic_type_get_member_count =
     fastdds__dynamic_type_get_member_count;
 
+
   // DYNAMIC TYPE CONSTRUCTION
-  serialization_support_interface->dynamic_type_builder_init = fastdds__dynamic_type_builder_init;
+  serialization_support_interface->dynamic_type_builder_init =
+    fastdds__dynamic_type_builder_init;
 
-  serialization_support_interface->dynamic_type_builder_clone = fastdds__dynamic_type_builder_clone;
+  serialization_support_interface->dynamic_type_builder_clone =
+    fastdds__dynamic_type_builder_clone;
 
-  serialization_support_interface->dynamic_type_builder_fini = fastdds__dynamic_type_builder_fini;
+  serialization_support_interface->dynamic_type_builder_fini =
+    fastdds__dynamic_type_builder_fini;
 
   serialization_support_interface->dynamic_type_init_from_dynamic_type_builder =
     fastdds__dynamic_type_init_from_dynamic_type_builder;
 
-  serialization_support_interface->dynamic_type_clone = fastdds__dynamic_type_clone;
+  serialization_support_interface->dynamic_type_clone =
+    fastdds__dynamic_type_clone;
 
-  serialization_support_interface->dynamic_type_fini = fastdds__dynamic_type_fini;
+  serialization_support_interface->dynamic_type_fini =
+    fastdds__dynamic_type_fini;
 
-  serialization_support_interface->dynamic_type_get_name = fastdds__dynamic_type_get_name;
+  serialization_support_interface->dynamic_type_get_name =
+    fastdds__dynamic_type_get_name;
 
   serialization_support_interface->dynamic_type_builder_get_name =
     fastdds__dynamic_type_builder_get_name;
 
   serialization_support_interface->dynamic_type_builder_set_name =
     fastdds__dynamic_type_builder_set_name;
+
 
   // DYNAMIC TYPE PRIMITIVE MEMBERS ================================================================
   serialization_support_interface->dynamic_type_builder_add_bool_member =
@@ -182,6 +193,7 @@ rcutils_ret_t rosidl_dynamic_typesupport_fastdds_init_serialization_support_inte
 
   serialization_support_interface->dynamic_type_builder_add_bounded_wstring_member =
     fastdds__dynamic_type_builder_add_bounded_wstring_member;
+
 
   // DYNAMIC TYPE STATIC ARRAY MEMBERS =============================================================
   serialization_support_interface->dynamic_type_builder_add_fixed_string_array_member =
@@ -247,6 +259,7 @@ rcutils_ret_t rosidl_dynamic_typesupport_fastdds_init_serialization_support_inte
   serialization_support_interface->dynamic_type_builder_add_bounded_wstring_array_member =
     fastdds__dynamic_type_builder_add_bounded_wstring_array_member;
 
+
   // DYNAMIC TYPE UNBOUNDED SEQUENCE MEMBERS =======================================================
   serialization_support_interface->dynamic_type_builder_add_bool_unbounded_sequence_member =
     fastdds__dynamic_type_builder_add_bool_unbounded_sequence_member;
@@ -296,20 +309,22 @@ rcutils_ret_t rosidl_dynamic_typesupport_fastdds_init_serialization_support_inte
   serialization_support_interface->dynamic_type_builder_add_wstring_unbounded_sequence_member =
     fastdds__dynamic_type_builder_add_wstring_unbounded_sequence_member;
 
-  serialization_support_interface->dynamic_type_builder_add_fixed_string_unbounded_sequence_member =
+  serialization_support_interface->
+  dynamic_type_builder_add_fixed_string_unbounded_sequence_member =
     fastdds__dynamic_type_builder_add_fixed_string_unbounded_sequence_member;
 
-  serialization_support_interface->dynamic_type_builder_add_fixed_wstring_unbounded_sequence_member
-    =
+  serialization_support_interface->
+  dynamic_type_builder_add_fixed_wstring_unbounded_sequence_member =
     fastdds__dynamic_type_builder_add_fixed_wstring_unbounded_sequence_member;
 
-  serialization_support_interface->dynamic_type_builder_add_bounded_string_unbounded_sequence_member
-    =
+  serialization_support_interface->
+  dynamic_type_builder_add_bounded_string_unbounded_sequence_member =
     fastdds__dynamic_type_builder_add_bounded_string_unbounded_sequence_member;
 
   serialization_support_interface->
   dynamic_type_builder_add_bounded_wstring_unbounded_sequence_member =
     fastdds__dynamic_type_builder_add_bounded_wstring_unbounded_sequence_member;
+
 
   // DYNAMIC TYPE BOUNDED SEQUENCE MEMBERS =========================================================
   serialization_support_interface->dynamic_type_builder_add_bool_bounded_sequence_member =
@@ -369,9 +384,10 @@ rcutils_ret_t rosidl_dynamic_typesupport_fastdds_init_serialization_support_inte
   serialization_support_interface->dynamic_type_builder_add_bounded_string_bounded_sequence_member =
     fastdds__dynamic_type_builder_add_bounded_string_bounded_sequence_member;
 
-  serialization_support_interface->dynamic_type_builder_add_bounded_wstring_bounded_sequence_member
-    =
+  serialization_support_interface->
+  dynamic_type_builder_add_bounded_wstring_bounded_sequence_member =
     fastdds__dynamic_type_builder_add_bounded_wstring_bounded_sequence_member;
+
 
   // DYNAMIC TYPE NESTED MEMBERS
   serialization_support_interface->dynamic_type_builder_add_complex_member =
@@ -396,8 +412,8 @@ rcutils_ret_t rosidl_dynamic_typesupport_fastdds_init_serialization_support_inte
   dynamic_type_builder_add_complex_unbounded_sequence_member_builder =
     fastdds__dynamic_type_builder_add_complex_unbounded_sequence_member_builder;
 
-  serialization_support_interface->dynamic_type_builder_add_complex_bounded_sequence_member_builder
-    =
+  serialization_support_interface->
+  dynamic_type_builder_add_complex_bounded_sequence_member_builder =
     fastdds__dynamic_type_builder_add_complex_bounded_sequence_member_builder;
 
   // ===============================================================================================
@@ -413,9 +429,11 @@ rcutils_ret_t rosidl_dynamic_typesupport_fastdds_init_serialization_support_inte
   serialization_support_interface->dynamic_data_clear_sequence_data =
     fastdds__dynamic_data_clear_sequence_data;
 
-  serialization_support_interface->dynamic_data_clear_value = fastdds__dynamic_data_clear_value;
+  serialization_support_interface->dynamic_data_clear_value =
+    fastdds__dynamic_data_clear_value;
 
-  serialization_support_interface->dynamic_data_equals = fastdds__dynamic_data_equals;
+  serialization_support_interface->dynamic_data_equals =
+    fastdds__dynamic_data_equals;
 
   serialization_support_interface->dynamic_data_get_item_count =
     fastdds__dynamic_data_get_item_count;
@@ -429,12 +447,15 @@ rcutils_ret_t rosidl_dynamic_typesupport_fastdds_init_serialization_support_inte
   serialization_support_interface->dynamic_data_get_array_index =
     fastdds__dynamic_data_get_array_index;
 
-  serialization_support_interface->dynamic_data_loan_value = fastdds__dynamic_data_loan_value;
+  serialization_support_interface->dynamic_data_loan_value =
+    fastdds__dynamic_data_loan_value;
 
   serialization_support_interface->dynamic_data_return_loaned_value =
     fastdds__dynamic_data_return_loaned_value;
 
-  serialization_support_interface->dynamic_data_get_name = fastdds__dynamic_data_get_name;
+  serialization_support_interface->dynamic_data_get_name =
+    fastdds__dynamic_data_get_name;
+
 
   // DYNAMIC DATA CONSTRUCTION
   serialization_support_interface->dynamic_data_init_from_dynamic_type_builder =
@@ -443,14 +464,20 @@ rcutils_ret_t rosidl_dynamic_typesupport_fastdds_init_serialization_support_inte
   serialization_support_interface->dynamic_data_init_from_dynamic_type =
     fastdds__dynamic_data_init_from_dynamic_type;
 
-  serialization_support_interface->dynamic_data_clone = fastdds__dynamic_data_clone;
+  serialization_support_interface->dynamic_data_clone =
+    fastdds__dynamic_data_clone;
 
-  serialization_support_interface->dynamic_data_fini = fastdds__dynamic_data_fini;
+  serialization_support_interface->dynamic_data_fini =
+    fastdds__dynamic_data_fini;
+
 
   // DYNAMIC DATA SERIALIZATION
-  serialization_support_interface->dynamic_data_serialize = fastdds__dynamic_data_serialize;
+  serialization_support_interface->dynamic_data_serialize =
+    fastdds__dynamic_data_serialize;
 
-  serialization_support_interface->dynamic_data_deserialize = fastdds__dynamic_data_deserialize;
+  serialization_support_interface->dynamic_data_deserialize =
+    fastdds__dynamic_data_deserialize;
+
 
   // DYNAMIC DATA PRIMITIVE MEMBER GETTERS =========================================================
   serialization_support_interface->dynamic_data_get_bool_value =
@@ -513,6 +540,7 @@ rcutils_ret_t rosidl_dynamic_typesupport_fastdds_init_serialization_support_inte
   serialization_support_interface->dynamic_data_get_bounded_wstring_value =
     fastdds__dynamic_data_get_bounded_wstring_value;
 
+
   // DYNAMIC DATA PRIMITIVE MEMBER SETTERS =========================================================
   serialization_support_interface->dynamic_data_set_bool_value =
     fastdds__dynamic_data_set_bool_value;
@@ -573,6 +601,7 @@ rcutils_ret_t rosidl_dynamic_typesupport_fastdds_init_serialization_support_inte
 
   serialization_support_interface->dynamic_data_set_bounded_wstring_value =
     fastdds__dynamic_data_set_bounded_wstring_value;
+
 
   // DYNAMIC TYPE SEQUENCES ========================================================================
   serialization_support_interface->dynamic_data_clear_sequence_data =
@@ -644,6 +673,7 @@ rcutils_ret_t rosidl_dynamic_typesupport_fastdds_init_serialization_support_inte
   serialization_support_interface->dynamic_data_insert_bounded_wstring_value =
     fastdds__dynamic_data_insert_bounded_wstring_value;
 
+
   // DYNAMIC TYPE NESTED
   serialization_support_interface->dynamic_data_get_complex_value =
     fastdds__dynamic_data_get_complex_value;
@@ -658,4 +688,4 @@ rcutils_ret_t rosidl_dynamic_typesupport_fastdds_init_serialization_support_inte
     fastdds__dynamic_data_insert_complex_value;
 
   return RCUTILS_RET_OK;
-} // NOLINT(readability/fn_size)
+}  // NOLINT(readability/fn_size)

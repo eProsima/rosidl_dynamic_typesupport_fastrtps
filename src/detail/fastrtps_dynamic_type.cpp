@@ -65,7 +65,7 @@ fastdds__dynamic_type_equals(
   const rosidl_dynamic_typesupport_dynamic_type_impl_t * other_type_impl,
   bool * equals)
 {
-  (void)serialization_support_impl;
+  (void) serialization_support_impl;
   auto type =
     static_cast<const fastdds__rosidl_dynamic_typesupport_dynamic_type_impl *>(type_impl->handle);
   auto other =
@@ -76,12 +76,13 @@ fastdds__dynamic_type_equals(
   return RCUTILS_RET_OK;
 }
 
-rcutils_ret_t fastdds__dynamic_type_get_member_count(
+rcutils_ret_t
+fastdds__dynamic_type_get_member_count(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   const rosidl_dynamic_typesupport_dynamic_type_impl_t * type_impl,
   size_t * member_count)
 {
-  (void)serialization_support_impl;
+  (void) serialization_support_impl;
   auto type =
     static_cast<const fastdds__rosidl_dynamic_typesupport_dynamic_type_impl *>(type_impl->handle);
 
@@ -98,7 +99,7 @@ fastdds__dynamic_type_builder_init(
   rcutils_allocator_t * allocator,
   rosidl_dynamic_typesupport_dynamic_type_builder_impl_t * type_builder_impl)
 {
-  (void)allocator;
+  (void) allocator;
 
   auto fastdds_impl =
     static_cast<fastdds__serialization_support_impl_handle_t *>(serialization_support_impl->handle);
@@ -137,7 +138,7 @@ fastdds__dynamic_type_builder_init(
   return RCUTILS_RET_OK;
 }
 
-rcutils_ret_t fastdds__dynamic_type_builder_clone(
+rcutils_ret_tfastdds__dynamic_type_builder_clone(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   const rosidl_dynamic_typesupport_dynamic_type_builder_impl_t * other,
   rcutils_allocator_t * allocator,
@@ -183,7 +184,7 @@ fastdds__dynamic_type_builder_fini(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_type_builder_impl_t * type_builder_impl)
 {
-  (void)serialization_support_impl;
+  (void) serialization_support_impl;
   auto type_builder_handle =
     static_cast<fastdds__rosidl_dynamic_typesupport_dynamic_type_builder_impl *>(
     type_builder_impl->handle);
@@ -196,13 +197,14 @@ fastdds__dynamic_type_builder_fini(
   return RCUTILS_RET_OK;
 }
 
-rcutils_ret_t fastdds__dynamic_type_init_from_dynamic_type_builder(
+rcutils_ret_t
+fastdds__dynamic_type_init_from_dynamic_type_builder(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_type_builder_impl_t * type_builder_impl,
   rcutils_allocator_t * allocator,
   rosidl_dynamic_typesupport_dynamic_type_impl_t * type_impl)
 {
-  (void)serialization_support_impl;
+  (void) serialization_support_impl;
 
   auto type_builder_handle =
     static_cast<const fastdds__rosidl_dynamic_typesupport_dynamic_type_builder_impl *>(
@@ -242,7 +244,7 @@ fastdds__dynamic_type_clone(
   rcutils_allocator_t * allocator,
   rosidl_dynamic_typesupport_dynamic_type_impl_t * type_impl)
 {
-  (void)serialization_support_impl;
+  (void) serialization_support_impl;
   type_impl->allocator = *allocator;
 
   auto type_impl_handle =
@@ -303,7 +305,7 @@ fastdds__dynamic_type_get_name(
   const char ** name,
   size_t * name_length)
 {
-  (void)serialization_support_impl;
+  (void) serialization_support_impl;
   auto type_handle =
     static_cast<const fastdds__rosidl_dynamic_typesupport_dynamic_type_impl *>(type_impl->handle);
 
@@ -320,13 +322,14 @@ fastdds__dynamic_type_get_name(
   return RCUTILS_RET_OK;
 }
 
-rcutils_ret_t fastdds__dynamic_type_builder_get_name(
+rcutils_ret_t
+fastdds__dynamic_type_builder_get_name(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   const rosidl_dynamic_typesupport_dynamic_type_builder_impl_t * type_builder_impl,
   const char ** name,
   size_t * name_length)
 {
-  (void)serialization_support_impl;
+  (void) serialization_support_impl;
 
   auto type_builder_handle =
     static_cast<const fastdds__rosidl_dynamic_typesupport_dynamic_type_builder_impl *>(
@@ -345,7 +348,8 @@ rcutils_ret_t fastdds__dynamic_type_builder_get_name(
   return RCUTILS_RET_OK;
 }
 
-rcutils_ret_t fastdds__dynamic_type_builder_set_name(
+rcutils_ret_t
+fastdds__dynamic_type_builder_set_name(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_type_builder_impl_t * type_builder_impl,
   const char * name,
@@ -456,7 +460,8 @@ FASTDDS_DYNAMIC_TYPE_BUILDER_ADD_MEMBER_FN(int64, eprosima::fastdds::dds::TK_INT
 FASTDDS_DYNAMIC_TYPE_BUILDER_ADD_MEMBER_FN(uint64, eprosima::fastdds::dds::TK_UINT64)
 #undef FASTDDS_DYNAMIC_TYPE_BUILDER_ADD_MEMBER_FN
 
-rcutils_ret_t fastdds__dynamic_type_builder_add_string_member(
+rcutils_ret_t
+fastdds__dynamic_type_builder_add_string_member(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_type_builder_impl_t * type_builder_impl,
   rosidl_dynamic_typesupport_member_id_t id,
@@ -471,7 +476,8 @@ rcutils_ret_t fastdds__dynamic_type_builder_add_string_member(
     default_value_length, CONTAINER_UNLIMITED);
 }
 
-rcutils_ret_t fastdds__dynamic_type_builder_add_wstring_member(
+rcutils_ret_t
+fastdds__dynamic_type_builder_add_wstring_member(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_type_builder_impl_t * type_builder_impl,
   rosidl_dynamic_typesupport_member_id_t id,
@@ -486,7 +492,8 @@ rcutils_ret_t fastdds__dynamic_type_builder_add_wstring_member(
     default_value_length, CONTAINER_UNLIMITED);
 }
 
-rcutils_ret_t fastdds__dynamic_type_builder_add_fixed_string_member(
+rcutils_ret_t
+fastdds__dynamic_type_builder_add_fixed_string_member(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_type_builder_impl_t * type_builder_impl,
   rosidl_dynamic_typesupport_member_id_t id,
@@ -503,7 +510,8 @@ rcutils_ret_t fastdds__dynamic_type_builder_add_fixed_string_member(
     default_value_length, string_length);
 }
 
-rcutils_ret_t fastdds__dynamic_type_builder_add_fixed_wstring_member(
+rcutils_ret_t
+fastdds__dynamic_type_builder_add_fixed_wstring_member(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_type_builder_impl_t * type_builder_impl,
   rosidl_dynamic_typesupport_member_id_t id,
@@ -520,7 +528,8 @@ rcutils_ret_t fastdds__dynamic_type_builder_add_fixed_wstring_member(
     default_value_length, wstring_length);
 }
 
-rcutils_ret_t fastdds__dynamic_type_builder_add_bounded_string_member(
+rcutils_ret_t
+fastdds__dynamic_type_builder_add_bounded_string_member(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_type_builder_impl_t * type_builder_impl,
   rosidl_dynamic_typesupport_member_id_t id,
@@ -558,7 +567,8 @@ rcutils_ret_t fastdds__dynamic_type_builder_add_bounded_string_member(
     "Could not add string member");
 }
 
-rcutils_ret_t fastdds__dynamic_type_builder_add_bounded_wstring_member(
+rcutils_ret_t
+fastdds__dynamic_type_builder_add_bounded_wstring_member(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_type_builder_impl_t * type_builder_impl,
   rosidl_dynamic_typesupport_member_id_t id,
@@ -649,7 +659,8 @@ FASTDDS_DYNAMIC_TYPE_BUILDER_ADD_ARRAY_MEMBER_FN(int64, eprosima::fastdds::dds::
 FASTDDS_DYNAMIC_TYPE_BUILDER_ADD_ARRAY_MEMBER_FN(uint64, eprosima::fastdds::dds::TK_UINT64)
 #undef FASTDDS_DYNAMIC_TYPE_BUILDER_ADD_ARRAY_MEMBER_FN
 
-rcutils_ret_t fastdds__dynamic_type_builder_add_string_array_member(
+rcutils_ret_t
+fastdds__dynamic_type_builder_add_string_array_member(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_type_builder_impl_t * type_builder_impl,
   rosidl_dynamic_typesupport_member_id_t id,
@@ -665,7 +676,8 @@ rcutils_ret_t fastdds__dynamic_type_builder_add_string_array_member(
     CONTAINER_UNLIMITED, array_length);
 }
 
-rcutils_ret_t fastdds__dynamic_type_builder_add_wstring_array_member(
+rcutils_ret_t
+fastdds__dynamic_type_builder_add_wstring_array_member(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_type_builder_impl_t * type_builder_impl,
   rosidl_dynamic_typesupport_member_id_t id,
@@ -681,7 +693,8 @@ rcutils_ret_t fastdds__dynamic_type_builder_add_wstring_array_member(
     CONTAINER_UNLIMITED, array_length);
 }
 
-rcutils_ret_t fastdds__dynamic_type_builder_add_fixed_string_array_member(
+rcutils_ret_t
+fastdds__dynamic_type_builder_add_fixed_string_array_member(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_type_builder_impl_t * type_builder_impl,
   rosidl_dynamic_typesupport_member_id_t id,
@@ -699,7 +712,8 @@ rcutils_ret_t fastdds__dynamic_type_builder_add_fixed_string_array_member(
     string_length, array_length);
 }
 
-rcutils_ret_t fastdds__dynamic_type_builder_add_fixed_wstring_array_member(
+rcutils_ret_t
+fastdds__dynamic_type_builder_add_fixed_wstring_array_member(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_type_builder_impl_t * type_builder_impl,
   rosidl_dynamic_typesupport_member_id_t id,
@@ -717,7 +731,8 @@ rcutils_ret_t fastdds__dynamic_type_builder_add_fixed_wstring_array_member(
     wstring_length, array_length);
 }
 
-rcutils_ret_t fastdds__dynamic_type_builder_add_bounded_string_array_member(
+rcutils_ret_t
+fastdds__dynamic_type_builder_add_bounded_string_array_member(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_type_builder_impl_t * type_builder_impl,
   rosidl_dynamic_typesupport_member_id_t id,
@@ -756,7 +771,8 @@ rcutils_ret_t fastdds__dynamic_type_builder_add_bounded_string_array_member(
     "Could not add bounded `string` array member to type builder");
 }
 
-rcutils_ret_t fastdds__dynamic_type_builder_add_bounded_wstring_array_member(
+rcutils_ret_t
+fastdds__dynamic_type_builder_add_bounded_wstring_array_member(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_type_builder_impl_t * type_builder_impl,
   rosidl_dynamic_typesupport_member_id_t id,
@@ -830,7 +846,8 @@ FASTDDS_DYNAMIC_TYPE_BUILDER_ADD_UNBOUNDED_SEQUENCE_MEMBER_FN(string)
 FASTDDS_DYNAMIC_TYPE_BUILDER_ADD_UNBOUNDED_SEQUENCE_MEMBER_FN(wstring)
 #undef FASTDDS_DYNAMIC_TYPE_BUILDER_ADD_UNBOUNDED_SEQUENCE_MEMBER_FN
 
-rcutils_ret_t fastdds__dynamic_type_builder_add_fixed_string_unbounded_sequence_member(
+rcutils_ret_t
+fastdds__dynamic_type_builder_add_fixed_string_unbounded_sequence_member(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_type_builder_impl_t * type_builder_impl,
   rosidl_dynamic_typesupport_member_id_t id,
@@ -847,7 +864,8 @@ rcutils_ret_t fastdds__dynamic_type_builder_add_fixed_string_unbounded_sequence_
     string_length, CONTAINER_UNLIMITED);
 }
 
-rcutils_ret_t fastdds__dynamic_type_builder_add_fixed_wstring_unbounded_sequence_member(
+rcutils_ret_t
+fastdds__dynamic_type_builder_add_fixed_wstring_unbounded_sequence_member(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_type_builder_impl_t * type_builder_impl,
   rosidl_dynamic_typesupport_member_id_t id,
@@ -864,7 +882,8 @@ rcutils_ret_t fastdds__dynamic_type_builder_add_fixed_wstring_unbounded_sequence
     wstring_length, CONTAINER_UNLIMITED);
 }
 
-rcutils_ret_t fastdds__dynamic_type_builder_add_bounded_string_unbounded_sequence_member(
+rcutils_ret_t
+fastdds__dynamic_type_builder_add_bounded_string_unbounded_sequence_member(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_type_builder_impl_t * type_builder_impl,
   rosidl_dynamic_typesupport_member_id_t id,
@@ -880,7 +899,8 @@ rcutils_ret_t fastdds__dynamic_type_builder_add_bounded_string_unbounded_sequenc
     string_bound, CONTAINER_UNLIMITED);
 }
 
-rcutils_ret_t fastdds__dynamic_type_builder_add_bounded_wstring_unbounded_sequence_member(
+rcutils_ret_t
+fastdds__dynamic_type_builder_add_bounded_wstring_unbounded_sequence_member(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_type_builder_impl_t * type_builder_impl,
   rosidl_dynamic_typesupport_member_id_t id,
@@ -963,7 +983,8 @@ FASTDDS_DYNAMIC_TYPE_BUILDER_ADD_BOUNDED_SEQUENCE_MEMBER_FN(
   eprosima::fastdds::dds::TK_UINT64)
 #undef FASTDDS_DYNAMIC_TYPE_BUILDER_ADD_BOUNDED_SEQUENCE_MEMBER_FN
 
-rcutils_ret_t fastdds__dynamic_type_builder_add_string_bounded_sequence_member(
+rcutils_ret_t
+fastdds__dynamic_type_builder_add_string_bounded_sequence_member(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_type_builder_impl_t * type_builder_impl,
   rosidl_dynamic_typesupport_member_id_t id,
@@ -979,7 +1000,8 @@ rcutils_ret_t fastdds__dynamic_type_builder_add_string_bounded_sequence_member(
     CONTAINER_UNLIMITED, fastdds__size_t_to_uint32_t(sequence_bound));
 }
 
-rcutils_ret_t fastdds__dynamic_type_builder_add_wstring_bounded_sequence_member(
+rcutils_ret_t
+fastdds__dynamic_type_builder_add_wstring_bounded_sequence_member(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_type_builder_impl_t * type_builder_impl,
   rosidl_dynamic_typesupport_member_id_t id,
@@ -995,7 +1017,8 @@ rcutils_ret_t fastdds__dynamic_type_builder_add_wstring_bounded_sequence_member(
     CONTAINER_UNLIMITED, fastdds__size_t_to_uint32_t(sequence_bound));
 }
 
-rcutils_ret_t fastdds__dynamic_type_builder_add_fixed_string_bounded_sequence_member(
+rcutils_ret_t
+fastdds__dynamic_type_builder_add_fixed_string_bounded_sequence_member(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_type_builder_impl_t * type_builder_impl,
   rosidl_dynamic_typesupport_member_id_t id,
@@ -1012,7 +1035,8 @@ rcutils_ret_t fastdds__dynamic_type_builder_add_fixed_string_bounded_sequence_me
     string_length, fastdds__size_t_to_uint32_t(sequence_bound));
 }
 
-rcutils_ret_t fastdds__dynamic_type_builder_add_fixed_wstring_bounded_sequence_member(
+rcutils_ret_t
+fastdds__dynamic_type_builder_add_fixed_wstring_bounded_sequence_member(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_type_builder_impl_t * type_builder_impl,
   rosidl_dynamic_typesupport_member_id_t id,
@@ -1029,7 +1053,8 @@ rcutils_ret_t fastdds__dynamic_type_builder_add_fixed_wstring_bounded_sequence_m
     wstring_length, fastdds__size_t_to_uint32_t(sequence_bound));
 }
 
-rcutils_ret_t fastdds__dynamic_type_builder_add_bounded_string_bounded_sequence_member(
+rcutils_ret_t
+fastdds__dynamic_type_builder_add_bounded_string_bounded_sequence_member(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_type_builder_impl_t * type_builder_impl,
   rosidl_dynamic_typesupport_member_id_t id,
@@ -1068,7 +1093,8 @@ rcutils_ret_t fastdds__dynamic_type_builder_add_bounded_string_bounded_sequence_
     "Could not add bounded `string` bounded sequence member to type builder");
 }
 
-rcutils_ret_t fastdds__dynamic_type_builder_add_bounded_wstring_bounded_sequence_member(
+rcutils_ret_t
+fastdds__dynamic_type_builder_add_bounded_wstring_bounded_sequence_member(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_type_builder_impl_t * type_builder_impl,
   rosidl_dynamic_typesupport_member_id_t id,
@@ -1108,7 +1134,8 @@ rcutils_ret_t fastdds__dynamic_type_builder_add_bounded_wstring_bounded_sequence
 }
 
 // DYNAMIC TYPE NESTED MEMBERS =====================================================================
-rcutils_ret_t fastdds__dynamic_type_builder_add_complex_member(
+rcutils_ret_t
+fastdds__dynamic_type_builder_add_complex_member(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_type_builder_impl_t * type_builder_impl,
   rosidl_dynamic_typesupport_member_id_t id,
@@ -1118,7 +1145,7 @@ rcutils_ret_t fastdds__dynamic_type_builder_add_complex_member(
   size_t default_value_length,
   rosidl_dynamic_typesupport_dynamic_type_impl_t * nested_struct)
 {
-  (void)serialization_support_impl;
+  (void) serialization_support_impl;
 
   auto type_builder_handle =
     static_cast<fastdds__rosidl_dynamic_typesupport_dynamic_type_builder_impl *>(
@@ -1150,7 +1177,8 @@ rcutils_ret_t fastdds__dynamic_type_builder_add_complex_member(
     "Could not add complex member to type builder");
 }
 
-rcutils_ret_t fastdds__dynamic_type_builder_add_complex_array_member(
+rcutils_ret_t
+fastdds__dynamic_type_builder_add_complex_array_member(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_type_builder_impl_t * type_builder_impl,
   rosidl_dynamic_typesupport_member_id_t id,
@@ -1197,7 +1225,8 @@ rcutils_ret_t fastdds__dynamic_type_builder_add_complex_array_member(
     "Could not add complex array member to type builder");
 }
 
-rcutils_ret_t fastdds__dynamic_type_builder_add_complex_unbounded_sequence_member(
+rcutils_ret_t
+fastdds__dynamic_type_builder_add_complex_unbounded_sequence_member(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_type_builder_impl_t * type_builder_impl,
   rosidl_dynamic_typesupport_member_id_t id,
@@ -1213,7 +1242,8 @@ rcutils_ret_t fastdds__dynamic_type_builder_add_complex_unbounded_sequence_membe
     nested_struct, CONTAINER_UNLIMITED);
 }
 
-rcutils_ret_t fastdds__dynamic_type_builder_add_complex_bounded_sequence_member(
+rcutils_ret_t
+fastdds__dynamic_type_builder_add_complex_bounded_sequence_member(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_type_builder_impl_t * type_builder_impl,
   rosidl_dynamic_typesupport_member_id_t id,
@@ -1260,7 +1290,8 @@ rcutils_ret_t fastdds__dynamic_type_builder_add_complex_bounded_sequence_member(
     "Could not add complex bounded sequence member to type builder");
 }
 
-rcutils_ret_t fastdds__dynamic_type_builder_add_complex_member_builder(
+rcutils_ret_t
+fastdds__dynamic_type_builder_add_complex_member_builder(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_type_builder_impl_t * type_builder_impl,
   rosidl_dynamic_typesupport_member_id_t id,
@@ -1270,7 +1301,7 @@ rcutils_ret_t fastdds__dynamic_type_builder_add_complex_member_builder(
   size_t default_value_length,
   rosidl_dynamic_typesupport_dynamic_type_builder_impl_t * nested_struct_builder)
 {
-  (void)serialization_support_impl;
+  (void) serialization_support_impl;
 
   auto type_builder_handle =
     static_cast<fastdds__rosidl_dynamic_typesupport_dynamic_type_builder_impl *>(
@@ -1302,7 +1333,8 @@ rcutils_ret_t fastdds__dynamic_type_builder_add_complex_member_builder(
     "Could not add complex member to type builder (via builder)");
 }
 
-rcutils_ret_t fastdds__dynamic_type_builder_add_complex_array_member_builder(
+rcutils_ret_t
+fastdds__dynamic_type_builder_add_complex_array_member_builder(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_type_builder_impl_t * type_builder_impl,
   rosidl_dynamic_typesupport_member_id_t id,
@@ -1349,7 +1381,8 @@ rcutils_ret_t fastdds__dynamic_type_builder_add_complex_array_member_builder(
     "Could not add complex array member to type builder (via builder)");
 }
 
-rcutils_ret_t fastdds__dynamic_type_builder_add_complex_unbounded_sequence_member_builder(
+rcutils_ret_t
+fastdds__dynamic_type_builder_add_complex_unbounded_sequence_member_builder(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_type_builder_impl_t * type_builder_impl,
   rosidl_dynamic_typesupport_member_id_t id,
@@ -1365,7 +1398,8 @@ rcutils_ret_t fastdds__dynamic_type_builder_add_complex_unbounded_sequence_membe
     nested_struct_builder, CONTAINER_UNLIMITED);
 }
 
-rcutils_ret_t fastdds__dynamic_type_builder_add_complex_bounded_sequence_member_builder(
+rcutils_ret_t
+fastdds__dynamic_type_builder_add_complex_bounded_sequence_member_builder(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_type_builder_impl_t * type_builder_impl,
   rosidl_dynamic_typesupport_member_id_t id,

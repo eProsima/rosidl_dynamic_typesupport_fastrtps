@@ -27,18 +27,18 @@
 // CORE ============================================================================================
 typedef struct fastdds__serialization_support_impl_handle_s
 {
-    eprosima::fastdds::dds::DynamicTypeBuilderFactory::_ref_type type_factory_;
-    eprosima::fastdds::dds::DynamicDataFactory::_ref_type data_factory_;
+  eprosima::fastdds::dds::DynamicTypeBuilderFactory::_ref_type type_factory_;
+  eprosima::fastdds::dds::DynamicDataFactory::_ref_type data_factory_;
 } fastdds__serialization_support_impl_handle_t;
 
 ROSIDL_DYNAMIC_TYPESUPPORT_FASTRTPS_PUBLIC
 rcutils_ret_t
 fastdds__serialization_support_impl_fini(
-        rosidl_dynamic_typesupport_serialization_support_impl_t* serialization_support_impl);
+  rosidl_dynamic_typesupport_serialization_support_impl_t* serialization_support_impl);
 
 ROSIDL_DYNAMIC_TYPESUPPORT_FASTRTPS_PUBLIC
 rcutils_ret_t
 fastdds__serialization_support_interface_fini(
-        rosidl_dynamic_typesupport_serialization_support_interface_t* serialization_support_interface);
+  rosidl_dynamic_typesupport_serialization_support_interface_t* serialization_support_interface);
 
 #endif  // DETAIL__FASTDDS_SERIALIZATION_SUPPORT_HPP_

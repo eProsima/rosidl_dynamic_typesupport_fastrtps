@@ -58,11 +58,12 @@ struct fastdds__rosidl_dynamic_typesupport_dynamic_data_impl
 };
 
 // DYNAMIC DATA UTILS ==============================================================================
-rcutils_ret_t fastdds__dynamic_data_clear_all_values(
+rcutils_ret_t
+fastdds__dynamic_data_clear_all_values(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_data_impl_t * data_impl)
 {
-  (void)serialization_support_impl;
+  (void) serialization_support_impl;
 
   auto data_handle =
     static_cast<const fastdds__rosidl_dynamic_typesupport_dynamic_data_impl *>(data_impl->handle);
@@ -76,11 +77,12 @@ rcutils_ret_t fastdds__dynamic_data_clear_all_values(
     "Could not clear all values");
 }
 
-rcutils_ret_t fastdds__dynamic_data_clear_nonkey_values(
+rcutils_ret_t
+fastdds__dynamic_data_clear_nonkey_values(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_data_impl_t * data_impl)
 {
-  (void)serialization_support_impl;
+  (void) serialization_support_impl;
 
   auto data_handle =
     static_cast<const fastdds__rosidl_dynamic_typesupport_dynamic_data_impl *>(data_impl->handle);
@@ -99,7 +101,7 @@ fastdds__dynamic_data_clear_value(
   rosidl_dynamic_typesupport_dynamic_data_impl_t * data_impl,
   rosidl_dynamic_typesupport_member_id_t id)
 {
-  (void)serialization_support_impl;
+  (void) serialization_support_impl;
 
   auto data_handle =
     static_cast<const fastdds__rosidl_dynamic_typesupport_dynamic_data_impl *>(data_impl->handle);
@@ -120,7 +122,7 @@ fastdds__dynamic_data_equals(
   const rosidl_dynamic_typesupport_dynamic_data_impl_t * other_data_impl,
   bool * equals)
 {
-  (void)serialization_support_impl;
+  (void) serialization_support_impl;
 
   auto data_handle =
     static_cast<const fastdds__rosidl_dynamic_typesupport_dynamic_data_impl *>(data_impl->handle);
@@ -140,12 +142,13 @@ fastdds__dynamic_data_equals(
   return RCUTILS_RET_OK;
 }
 
-rcutils_ret_t fastdds__dynamic_data_get_item_count(
+rcutils_ret_t
+fastdds__dynamic_data_get_item_count(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   const rosidl_dynamic_typesupport_dynamic_data_impl_t * data_impl,
   size_t * item_count)
 {
-  (void)serialization_support_impl;
+  (void) serialization_support_impl;
 
   auto data_handle =
     static_cast<const fastdds__rosidl_dynamic_typesupport_dynamic_data_impl *>(data_impl->handle);
@@ -158,14 +161,15 @@ rcutils_ret_t fastdds__dynamic_data_get_item_count(
   return RCUTILS_RET_OK;
 }
 
-rcutils_ret_t fastdds__dynamic_data_get_member_id_by_name(
+rcutils_ret_t
+fastdds__dynamic_data_get_member_id_by_name(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   const rosidl_dynamic_typesupport_dynamic_data_impl_t * data_impl,
   const char * name,
   size_t name_length,
   rosidl_dynamic_typesupport_member_id_t * member_id)
 {
-  (void)serialization_support_impl;
+  (void) serialization_support_impl;
 
   auto data_handle =
     static_cast<const fastdds__rosidl_dynamic_typesupport_dynamic_data_impl *>(data_impl->handle);
@@ -178,13 +182,14 @@ rcutils_ret_t fastdds__dynamic_data_get_member_id_by_name(
   return RCUTILS_RET_OK;
 }
 
-rcutils_ret_t fastdds__dynamic_data_get_member_id_at_index(
+rcutils_ret_t
+fastdds__dynamic_data_get_member_id_at_index(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   const rosidl_dynamic_typesupport_dynamic_data_impl_t * data_impl,
   size_t index,
   rosidl_dynamic_typesupport_member_id_t * member_id)
 {
-  (void)serialization_support_impl;
+  (void) serialization_support_impl;
 
   auto data_handle =
     static_cast<const fastdds__rosidl_dynamic_typesupport_dynamic_data_impl *>(data_impl->handle);
@@ -197,15 +202,14 @@ rcutils_ret_t fastdds__dynamic_data_get_member_id_at_index(
   return RCUTILS_RET_OK;
 }
 
-rcutils_ret_t fastdds__dynamic_data_get_array_index(
+rcutils_ret_t
+fastdds__dynamic_data_get_array_index(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   const rosidl_dynamic_typesupport_dynamic_data_impl_t * data_impl,
   size_t index,
   rosidl_dynamic_typesupport_member_id_t * array_index)
 {
-  (void)serialization_support_impl;
-  (void)index;
-  (void)array_index;
+  (void) serialization_support_impl;
 
   auto data_handle =
     static_cast<const fastdds__rosidl_dynamic_typesupport_dynamic_data_impl *>(data_impl->handle);
@@ -228,8 +232,8 @@ fastdds__dynamic_data_loan_value(
   rcutils_allocator_t * allocator,
   rosidl_dynamic_typesupport_dynamic_data_impl_t * loaned_data_impl)
 {
-  (void)serialization_support_impl;
-  (void)allocator;
+  (void) serialization_support_impl;
+  (void) allocator;
 
   auto data_handle =
     static_cast<const fastdds__rosidl_dynamic_typesupport_dynamic_data_impl *>(data_impl->handle);
@@ -265,12 +269,13 @@ fastdds__dynamic_data_loan_value(
   return RCUTILS_RET_OK;
 }
 
-rcutils_ret_t fastdds__dynamic_data_return_loaned_value(
+rcutils_ret_t
+fastdds__dynamic_data_return_loaned_value(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_data_impl_t * data_impl,
   const rosidl_dynamic_typesupport_dynamic_data_impl_t * inner_data_impl)
 {
-  (void)serialization_support_impl;
+  (void) serialization_support_impl;
 
   auto data_handle =
     static_cast<const fastdds__rosidl_dynamic_typesupport_dynamic_data_impl *>(data_impl->handle);
@@ -300,7 +305,7 @@ fastdds__dynamic_data_get_name(
   const char ** name,
   size_t * name_length)
 {
-  (void)serialization_support_impl;
+  (void) serialization_support_impl;
 
   auto data_handle =
     static_cast<const fastdds__rosidl_dynamic_typesupport_dynamic_data_impl *>(data_impl->handle);
@@ -320,13 +325,14 @@ fastdds__dynamic_data_get_name(
 }
 
 // DYNAMIC DATA CONSTRUCTION =======================================================================
-rcutils_ret_t fastdds__dynamic_data_init_from_dynamic_type_builder(
+rcutils_ret_t
+fastdds__dynamic_data_init_from_dynamic_type_builder(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_type_builder_impl_t * type_builder_impl,
   rcutils_allocator_t * allocator,
   rosidl_dynamic_typesupport_dynamic_data_impl_t * data_impl)
 {
-  (void)allocator;
+  (void) allocator;
 
   auto type_builder_handle =
     static_cast<const fastdds__rosidl_dynamic_typesupport_dynamic_type_builder_impl *>(
@@ -365,13 +371,14 @@ rcutils_ret_t fastdds__dynamic_data_init_from_dynamic_type_builder(
   return RCUTILS_RET_OK;
 }
 
-rcutils_ret_t fastdds__dynamic_data_init_from_dynamic_type(
+rcutils_ret_t
+fastdds__dynamic_data_init_from_dynamic_type(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_type_impl_t * type_impl,
   rcutils_allocator_t * allocator,
   rosidl_dynamic_typesupport_dynamic_data_impl_t * data_impl)
 {
-  (void)allocator;
+  (void) allocator;
 
   auto type_handle =
     static_cast<const fastdds__rosidl_dynamic_typesupport_dynamic_type_impl *>(
@@ -422,7 +429,7 @@ fastdds__dynamic_data_clone(
   rcutils_allocator_t * allocator,
   rosidl_dynamic_typesupport_dynamic_data_impl_t * data_impl)
 {
-  (void)serialization_support_impl;
+  (void) serialization_support_impl;
   data_impl->allocator = *allocator;
 
   auto other_data_handle =
@@ -489,7 +496,7 @@ fastdds__dynamic_data_serialize(
   rosidl_dynamic_typesupport_dynamic_data_impl_t * data_impl,
   rcutils_uint8_array_t * buffer)
 {
-  (void)serialization_support_impl;
+  (void) serialization_support_impl;
 
   auto data_handle =
     static_cast<fastdds__rosidl_dynamic_typesupport_dynamic_data_impl *>(data_impl->handle);
@@ -543,7 +550,7 @@ fastdds__dynamic_data_deserialize(
   rosidl_dynamic_typesupport_dynamic_data_impl_t * data_impl,
   rcutils_uint8_array_t * buffer)
 {
-  (void)serialization_support_impl;
+  (void) serialization_support_impl;
 
   auto data_handle =
     static_cast<fastdds__rosidl_dynamic_typesupport_dynamic_data_impl *>(data_impl->handle);
@@ -583,7 +590,7 @@ fastdds__dynamic_data_deserialize(
     rosidl_dynamic_typesupport_member_id_t id, \
     ValueT * value) \
   { \
-    (void)serialization_support_impl; \
+    (void) serialization_support_impl; \
     auto data_handle = \
       static_cast<fastdds__rosidl_dynamic_typesupport_dynamic_data_impl *>(data_impl->handle); \
     if (!data_handle || !data_handle->ref_type) { \
@@ -613,13 +620,14 @@ FASTDDS_DYNAMIC_DATA_GET_VALUE_FN(uint64, uint64_t, uint64)
 #undef FASTDDS_DYNAMIC_DATA_GET_VALUE_FN
 
 // This needs something different to do the conversion out
-rcutils_ret_t fastdds__dynamic_data_get_wchar_value(
+rcutils_ret_t
+fastdds__dynamic_data_get_wchar_value(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   const rosidl_dynamic_typesupport_dynamic_data_impl_t * data_impl,
   rosidl_dynamic_typesupport_member_id_t id,
   char16_t * value)
 {
-  (void)serialization_support_impl;
+  (void) serialization_support_impl;
   wchar_t tmp_out;
 
   auto data_handle =
@@ -638,14 +646,15 @@ rcutils_ret_t fastdds__dynamic_data_get_wchar_value(
   return RCUTILS_RET_OK;
 }
 
-rcutils_ret_t fastdds__dynamic_data_get_string_value(
+rcutils_ret_t
+fastdds__dynamic_data_get_string_value(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   const rosidl_dynamic_typesupport_dynamic_data_impl_t * data_impl,
   rosidl_dynamic_typesupport_member_id_t id,
   char ** value,
   size_t * value_length)
 {
-  (void)serialization_support_impl;
+  (void) serialization_support_impl;
   std::string tmp_string;
 
   auto data_handle =
@@ -668,14 +677,15 @@ rcutils_ret_t fastdds__dynamic_data_get_string_value(
   return RCUTILS_RET_OK;
 }
 
-rcutils_ret_t fastdds__dynamic_data_get_wstring_value(
+rcutils_ret_t
+fastdds__dynamic_data_get_wstring_value(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   const rosidl_dynamic_typesupport_dynamic_data_impl_t * data_impl,
   rosidl_dynamic_typesupport_member_id_t id,
   char16_t ** value,
   size_t * value_length)
 {
-  (void)serialization_support_impl;
+  (void) serialization_support_impl;
   std::wstring tmp_wstring;
 
   auto data_handle =
@@ -698,7 +708,8 @@ rcutils_ret_t fastdds__dynamic_data_get_wstring_value(
   return RCUTILS_RET_OK;
 }
 
-rcutils_ret_t fastdds__dynamic_data_get_fixed_string_value(
+rcutils_ret_t
+fastdds__dynamic_data_get_fixed_string_value(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   const rosidl_dynamic_typesupport_dynamic_data_impl_t * data_impl,
   rosidl_dynamic_typesupport_member_id_t id,
@@ -706,7 +717,7 @@ rcutils_ret_t fastdds__dynamic_data_get_fixed_string_value(
   size_t * value_length,
   size_t string_length)
 {
-  (void)serialization_support_impl;
+  (void) serialization_support_impl;
   std::string tmp_string;
 
   auto data_handle =
@@ -731,7 +742,8 @@ rcutils_ret_t fastdds__dynamic_data_get_fixed_string_value(
   return RCUTILS_RET_OK;
 }
 
-rcutils_ret_t fastdds__dynamic_data_get_fixed_wstring_value(
+rcutils_ret_t
+fastdds__dynamic_data_get_fixed_wstring_value(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   const rosidl_dynamic_typesupport_dynamic_data_impl_t * data_impl,
   rosidl_dynamic_typesupport_member_id_t id,
@@ -739,7 +751,7 @@ rcutils_ret_t fastdds__dynamic_data_get_fixed_wstring_value(
   size_t * value_length,
   size_t wstring_length)
 {
-  (void)serialization_support_impl;
+  (void) serialization_support_impl;
   std::wstring tmp_wstring;
 
   auto data_handle =
@@ -764,7 +776,8 @@ rcutils_ret_t fastdds__dynamic_data_get_fixed_wstring_value(
   return RCUTILS_RET_OK;
 }
 
-rcutils_ret_t fastdds__dynamic_data_get_bounded_string_value(
+rcutils_ret_t
+fastdds__dynamic_data_get_bounded_string_value(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   const rosidl_dynamic_typesupport_dynamic_data_impl_t * data_impl,
   rosidl_dynamic_typesupport_member_id_t id,
@@ -772,7 +785,7 @@ rcutils_ret_t fastdds__dynamic_data_get_bounded_string_value(
   size_t * value_length,
   size_t string_bound)
 {
-  (void)serialization_support_impl;
+  (void) serialization_support_impl;
   std::string tmp_string;
 
   auto data_handle =
@@ -795,7 +808,8 @@ rcutils_ret_t fastdds__dynamic_data_get_bounded_string_value(
   return RCUTILS_RET_OK;
 }
 
-rcutils_ret_t fastdds__dynamic_data_get_bounded_wstring_value(
+rcutils_ret_t
+fastdds__dynamic_data_get_bounded_wstring_value(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   const rosidl_dynamic_typesupport_dynamic_data_impl_t * data_impl,
   rosidl_dynamic_typesupport_member_id_t id,
@@ -803,7 +817,7 @@ rcutils_ret_t fastdds__dynamic_data_get_bounded_wstring_value(
   size_t * value_length,
   size_t wstring_bound)
 {
-  (void)serialization_support_impl;
+  (void) serialization_support_impl;
   std::wstring tmp_wstring;
 
   auto data_handle =
@@ -834,7 +848,7 @@ rcutils_ret_t fastdds__dynamic_data_get_bounded_wstring_value(
     rosidl_dynamic_typesupport_member_id_t id, \
     ValueT value) \
   { \
-    (void)serialization_support_impl; \
+    (void) serialization_support_impl; \
     auto data_handle = \
       static_cast<fastdds__rosidl_dynamic_typesupport_dynamic_data_impl *>(data_impl->handle); \
     if (!data_handle || !data_handle->ref_type) { \
@@ -863,14 +877,15 @@ FASTDDS_DYNAMIC_DATA_SET_VALUE_FN(int64, int64_t, int64)
 FASTDDS_DYNAMIC_DATA_SET_VALUE_FN(uint64, uint64_t, uint64)
 #undef FASTDDS_DYNAMIC_DATA_SET_VALUE_FN
 
-rcutils_ret_t fastdds__dynamic_data_set_string_value(
+rcutils_ret_t
+fastdds__dynamic_data_set_string_value(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_data_impl_t * data_impl,
   rosidl_dynamic_typesupport_member_id_t id,
   const char * value,
   size_t value_length)
 {
-  (void)serialization_support_impl;
+  (void) serialization_support_impl;
 
   auto data_handle =
     static_cast<fastdds__rosidl_dynamic_typesupport_dynamic_data_impl *>(data_impl->handle);
@@ -887,14 +902,15 @@ rcutils_ret_t fastdds__dynamic_data_set_string_value(
     "Could not set `string` value (of type `char *`)");
 }
 
-rcutils_ret_t fastdds__dynamic_data_set_wstring_value(
+rcutils_ret_t
+fastdds__dynamic_data_set_wstring_value(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_data_impl_t * data_impl,
   rosidl_dynamic_typesupport_member_id_t id,
   const char16_t * value,
   size_t value_length)
 {
-  (void)serialization_support_impl;
+  (void) serialization_support_impl;
 
   auto data_handle =
     static_cast<fastdds__rosidl_dynamic_typesupport_dynamic_data_impl *>(data_impl->handle);
@@ -912,7 +928,8 @@ rcutils_ret_t fastdds__dynamic_data_set_wstring_value(
     "Could not set `wstring` value (of type `char16_t *`)");
 }
 
-rcutils_ret_t fastdds__dynamic_data_set_fixed_string_value(
+rcutils_ret_t
+fastdds__dynamic_data_set_fixed_string_value(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_data_impl_t * data_impl,
   rosidl_dynamic_typesupport_member_id_t id,
@@ -920,7 +937,7 @@ rcutils_ret_t fastdds__dynamic_data_set_fixed_string_value(
   size_t value_length,
   size_t string_length)
 {
-  (void)serialization_support_impl;
+  (void) serialization_support_impl;
 
   auto data_handle =
     static_cast<fastdds__rosidl_dynamic_typesupport_dynamic_data_impl *>(data_impl->handle);
@@ -938,7 +955,8 @@ rcutils_ret_t fastdds__dynamic_data_set_fixed_string_value(
     "Could not set fixed `string` value (of type `char *`)");
 }
 
-rcutils_ret_t fastdds__dynamic_data_set_fixed_wstring_value(
+rcutils_ret_t
+fastdds__dynamic_data_set_fixed_wstring_value(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_data_impl_t * data_impl,
   rosidl_dynamic_typesupport_member_id_t id,
@@ -946,7 +964,7 @@ rcutils_ret_t fastdds__dynamic_data_set_fixed_wstring_value(
   size_t value_length,
   size_t wstring_length)
 {
-  (void)serialization_support_impl;
+  (void) serialization_support_impl;
 
   auto data_handle =
     static_cast<fastdds__rosidl_dynamic_typesupport_dynamic_data_impl *>(data_impl->handle);
@@ -965,7 +983,8 @@ rcutils_ret_t fastdds__dynamic_data_set_fixed_wstring_value(
     "Could not set fixed `wstring` value (of type `char16_t *`)");
 }
 
-rcutils_ret_t fastdds__dynamic_data_set_bounded_string_value(
+rcutils_ret_t
+fastdds__dynamic_data_set_bounded_string_value(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_data_impl_t * data_impl,
   rosidl_dynamic_typesupport_member_id_t id,
@@ -973,7 +992,7 @@ rcutils_ret_t fastdds__dynamic_data_set_bounded_string_value(
   size_t value_length,
   size_t string_bound)
 {
-  (void)serialization_support_impl;
+  (void) serialization_support_impl;
 
   auto data_handle =
     static_cast<fastdds__rosidl_dynamic_typesupport_dynamic_data_impl *>(data_impl->handle);
@@ -990,7 +1009,8 @@ rcutils_ret_t fastdds__dynamic_data_set_bounded_string_value(
     "Could not set bounded `string` value (of type `char *`)");
 }
 
-rcutils_ret_t fastdds__dynamic_data_set_bounded_wstring_value(
+rcutils_ret_t
+fastdds__dynamic_data_set_bounded_wstring_value(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_data_impl_t * data_impl,
   rosidl_dynamic_typesupport_member_id_t id,
@@ -998,7 +1018,7 @@ rcutils_ret_t fastdds__dynamic_data_set_bounded_wstring_value(
   size_t value_length,
   size_t wstring_bound)
 {
-  (void)serialization_support_impl;
+  (void) serialization_support_impl;
 
   auto data_handle =
     static_cast<fastdds__rosidl_dynamic_typesupport_dynamic_data_impl *>(data_impl->handle);
@@ -1017,11 +1037,12 @@ rcutils_ret_t fastdds__dynamic_data_set_bounded_wstring_value(
 }
 
 // DYNAMIC DATA SEQUENCES ==========================================================================
-rcutils_ret_t fastdds__dynamic_data_clear_sequence_data(
+rcutils_ret_t
+fastdds__dynamic_data_clear_sequence_data(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_data_impl_t * data_impl)
 {
-  (void)serialization_support_impl;
+  (void) serialization_support_impl;
 
   auto data_handle =
     static_cast<fastdds__rosidl_dynamic_typesupport_dynamic_data_impl *>(data_impl->handle);
@@ -1035,12 +1056,13 @@ rcutils_ret_t fastdds__dynamic_data_clear_sequence_data(
     "Could not clear sequence data");
 }
 
-rcutils_ret_t fastdds__dynamic_data_remove_sequence_data(
+rcutils_ret_t
+fastdds__dynamic_data_remove_sequence_data(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_data_impl_t * data_impl,
   rosidl_dynamic_typesupport_member_id_t id)
 {
-  (void)serialization_support_impl;
+  (void) serialization_support_impl;
 
   auto data_handle =
     static_cast<fastdds__rosidl_dynamic_typesupport_dynamic_data_impl *>(data_impl->handle);
@@ -1056,12 +1078,13 @@ rcutils_ret_t fastdds__dynamic_data_remove_sequence_data(
     "Could not remove sequence data");
 }
 
-rcutils_ret_t fastdds__dynamic_data_insert_sequence_data(
+rcutils_ret_t
+fastdds__dynamic_data_insert_sequence_data(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_data_impl_t * data_impl,
   rosidl_dynamic_typesupport_member_id_t * out_id)
 {
-  (void)serialization_support_impl;
+  (void) serialization_support_impl;
 
   auto data_handle =
     static_cast<fastdds__rosidl_dynamic_typesupport_dynamic_data_impl *>(data_impl->handle);
@@ -1106,7 +1129,7 @@ rcutils_ret_t fastdds__dynamic_data_insert_sequence_data(
     rosidl_dynamic_typesupport_dynamic_data_impl_t * data_impl, ValueT value, \
     rosidl_dynamic_typesupport_member_id_t * out_id) \
   { \
-    (void)serialization_support_impl; \
+    (void) serialization_support_impl; \
     eprosima::fastdds::dds::MemberId tmp_id; \
  \
     auto data_handle = \
@@ -1139,14 +1162,15 @@ FASTDDS_DYNAMIC_DATA_INSERT_VALUE_FN(int64, int64_t, int64)
 FASTDDS_DYNAMIC_DATA_INSERT_VALUE_FN(uint64, uint64_t, uint64)
 #undef FASTDDS_DYNAMIC_DATA_INSERT_VALUE_FN
 
-rcutils_ret_t fastdds__dynamic_data_insert_string_value(
+rcutils_ret_t
+fastdds__dynamic_data_insert_string_value(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_data_impl_t * data_impl,
   const char * value,
   size_t value_length,
   rosidl_dynamic_typesupport_member_id_t * out_id)
 {
-  (void)serialization_support_impl;
+  (void) serialization_support_impl;
   eprosima::fastdds::dds::MemberId tmp_id;
 
   auto data_handle =
@@ -1166,14 +1190,15 @@ rcutils_ret_t fastdds__dynamic_data_insert_string_value(
   return RCUTILS_RET_OK;
 }
 
-rcutils_ret_t fastdds__dynamic_data_insert_wstring_value(
+rcutils_ret_t
+fastdds__dynamic_data_insert_wstring_value(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_data_impl_t * data_impl,
   const char16_t * value,
   size_t value_length,
   rosidl_dynamic_typesupport_member_id_t * out_id)
 {
-  (void)serialization_support_impl;
+  (void) serialization_support_impl;
   eprosima::fastdds::dds::MemberId tmp_id;
 
   auto data_handle =
@@ -1194,7 +1219,8 @@ rcutils_ret_t fastdds__dynamic_data_insert_wstring_value(
   return RCUTILS_RET_OK;
 }
 
-rcutils_ret_t fastdds__dynamic_data_insert_fixed_string_value(
+rcutils_ret_t
+fastdds__dynamic_data_insert_fixed_string_value(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_data_impl_t * data_impl,
   const char * value,
@@ -1202,7 +1228,7 @@ rcutils_ret_t fastdds__dynamic_data_insert_fixed_string_value(
   size_t string_length,
   rosidl_dynamic_typesupport_member_id_t * out_id)
 {
-  (void)serialization_support_impl;
+  (void) serialization_support_impl;
   eprosima::fastdds::dds::MemberId tmp_id;
 
   auto data_handle =
@@ -1224,7 +1250,8 @@ rcutils_ret_t fastdds__dynamic_data_insert_fixed_string_value(
   return RCUTILS_RET_OK;
 }
 
-rcutils_ret_t fastdds__dynamic_data_insert_fixed_wstring_value(
+rcutils_ret_t
+fastdds__dynamic_data_insert_fixed_wstring_value(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_data_impl_t * data_impl,
   const char16_t * value,
@@ -1232,7 +1259,7 @@ rcutils_ret_t fastdds__dynamic_data_insert_fixed_wstring_value(
   size_t wstring_length,
   rosidl_dynamic_typesupport_member_id_t * out_id)
 {
-  (void)serialization_support_impl;
+  (void) serialization_support_impl;
   eprosima::fastdds::dds::MemberId tmp_id;
 
   auto data_handle =
@@ -1255,7 +1282,8 @@ rcutils_ret_t fastdds__dynamic_data_insert_fixed_wstring_value(
   return RCUTILS_RET_OK;
 }
 
-rcutils_ret_t fastdds__dynamic_data_insert_bounded_string_value(
+rcutils_ret_t
+fastdds__dynamic_data_insert_bounded_string_value(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_data_impl_t * data_impl,
   const char * value,
@@ -1263,7 +1291,7 @@ rcutils_ret_t fastdds__dynamic_data_insert_bounded_string_value(
   size_t string_bound,
   rosidl_dynamic_typesupport_member_id_t * out_id)
 {
-  (void)serialization_support_impl;
+  (void) serialization_support_impl;
   eprosima::fastdds::dds::MemberId tmp_id;
 
   auto data_handle =
@@ -1283,7 +1311,8 @@ rcutils_ret_t fastdds__dynamic_data_insert_bounded_string_value(
   return RCUTILS_RET_OK;
 }
 
-rcutils_ret_t fastdds__dynamic_data_insert_bounded_wstring_value(
+rcutils_ret_t
+fastdds__dynamic_data_insert_bounded_wstring_value(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_data_impl_t * data_impl,
   const char16_t * value,
@@ -1291,7 +1320,7 @@ rcutils_ret_t fastdds__dynamic_data_insert_bounded_wstring_value(
   size_t wstring_bound,
   rosidl_dynamic_typesupport_member_id_t * out_id)
 {
-  (void)serialization_support_impl;
+  (void) serialization_support_impl;
   eprosima::fastdds::dds::MemberId tmp_id;
 
   auto data_handle =
@@ -1315,15 +1344,16 @@ rcutils_ret_t fastdds__dynamic_data_insert_bounded_wstring_value(
 }
 
 // DYNAMIC DATA NESTED =============================================================================
-rcutils_ret_t fastdds__dynamic_data_get_complex_value(
+rcutils_ret_t
+fastdds__dynamic_data_get_complex_value(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   const rosidl_dynamic_typesupport_dynamic_data_impl_t * data_impl,
   rosidl_dynamic_typesupport_member_id_t id,
   rcutils_allocator_t * allocator,
   rosidl_dynamic_typesupport_dynamic_data_impl_t * value)
 {
-  (void)serialization_support_impl;
-  (void)allocator;
+  (void) serialization_support_impl;
+  (void) allocator;
 
   auto data_handle =
     static_cast<const fastdds__rosidl_dynamic_typesupport_dynamic_data_impl *>(data_impl->handle);
@@ -1345,13 +1375,14 @@ rcutils_ret_t fastdds__dynamic_data_get_complex_value(
     "Could not get complex value");
 }
 
-rcutils_ret_t fastdds__dynamic_data_set_complex_value(
+rcutils_ret_t
+fastdds__dynamic_data_set_complex_value(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_data_impl_t * data_impl,
   rosidl_dynamic_typesupport_member_id_t id,
   rosidl_dynamic_typesupport_dynamic_data_impl_t * value)
 {
-  (void)serialization_support_impl;
+  (void) serialization_support_impl;
 
   auto data_handle =
     static_cast<fastdds__rosidl_dynamic_typesupport_dynamic_data_impl *>(data_impl->handle);
@@ -1373,13 +1404,14 @@ rcutils_ret_t fastdds__dynamic_data_set_complex_value(
     "Could not set complex value");
 }
 
-rcutils_ret_t fastdds__dynamic_data_insert_complex_value_copy(
+rcutils_ret_t
+fastdds__dynamic_data_insert_complex_value_copy(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_data_impl_t * data_impl,
   const rosidl_dynamic_typesupport_dynamic_data_impl_t * value,
   rosidl_dynamic_typesupport_member_id_t * out_id)
 {
-  (void)serialization_support_impl;
+  (void) serialization_support_impl;
   eprosima::fastdds::dds::MemberId tmp_id;
 
   auto data_handle =
@@ -1406,13 +1438,14 @@ rcutils_ret_t fastdds__dynamic_data_insert_complex_value_copy(
   return RCUTILS_RET_OK;
 }
 
-rcutils_ret_t fastdds__dynamic_data_insert_complex_value(
+rcutils_ret_t
+fastdds__dynamic_data_insert_complex_value(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   rosidl_dynamic_typesupport_dynamic_data_impl_t * data_impl,
   rosidl_dynamic_typesupport_dynamic_data_impl_t * value,
   rosidl_dynamic_typesupport_member_id_t * out_id)
 {
-  (void)serialization_support_impl;
+  (void) serialization_support_impl;
   eprosima::fastdds::dds::MemberId tmp_id;
 
   auto data_handle =
