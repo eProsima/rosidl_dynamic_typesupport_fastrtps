@@ -2,8 +2,8 @@
 Changelog for package rosidl_dynamic_typesupport_fastrtps
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.3.0 (2024-11-20)
+------------------
 * Drop support for long double/float128. (`#6 <https://github.com/ros2/rosidl_dynamic_typesupport_fastrtps/issues/6>`_)
 * Contributors: Chris Lalancette
 
