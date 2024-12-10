@@ -138,7 +138,8 @@ fastdds__dynamic_type_builder_init(
   return RCUTILS_RET_OK;
 }
 
-rcutils_ret_tfastdds__dynamic_type_builder_clone(
+rcutils_ret_t
+fastdds__dynamic_type_builder_clone(
   rosidl_dynamic_typesupport_serialization_support_impl_t * serialization_support_impl,
   const rosidl_dynamic_typesupport_dynamic_type_builder_impl_t * other,
   rcutils_allocator_t * allocator,
